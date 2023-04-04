@@ -11,9 +11,9 @@ export default function App() {
     <MDBFooter className='text-center hover' color='white' bgColor='dark'>
       <MDBContainer className='p-4'>
         <section className='mb-4'>
-          <SocialIcon url="https://www.facebook.com/ZamZam176/"/>
+          <SocialIcon url="https://www.facebook.com/ZamZam176/" target="_blank"/>
           
-          <SocialIcon url="https://www.instagram.com/zamzam_bag_boutique/?hl=en"/>
+          <SocialIcon url="https://www.instagram.com/zamzam_bag_boutique/?hl=en" target="_blank"/>
 
           {/* <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
             <MDBIcon fab icon='google' />
@@ -152,7 +152,7 @@ export default function App() {
       </MDBContainer>
 
       <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-        <span>© 2023 Copyright:</span>
+        <span>© 2023:</span>
         <a className='text-white' href='/'>
           <span> Zam Zam Bags & Boutique</span>
         </a>
