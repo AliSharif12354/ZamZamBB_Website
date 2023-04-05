@@ -2,9 +2,13 @@
   /* max-width: 1280px; */
   /* margin: 0 auto; */
   /* padding: 2rem; */
-  /* text-align: center; */
-  background-color: #D3D3D3;
+  /* text-align: center;  */
+  background-color: white;
 } 
+
+.admin {
+  text-align: center;
+}
 
 .Flyers {
   padding: 2rem 0rem;

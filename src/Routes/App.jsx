@@ -5,11 +5,17 @@ import Flyer from '../Components/Flyer.jsx'
 // import Flyers from '../Components/Flyers.jsx'
 import Footer from '../Components/Footer.jsx'
 import Information from '../Components/Information'
+import SignIn from '../Components/Auth/SignIn'
+import SignUp from '../Components/Auth/SignUp'
+
+
 
 function App() {
   return (
 			<>
         <Navbar_V2/>
+        {/* <SignIn/>
+        <SignUp/> */}
         {/* <Flyers flyers={[
           {logo: "./src/Images/Flyer_1.jpg"}, 
           {logo: "./src/Images/Flyer_2.jpg"}, 
