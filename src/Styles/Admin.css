@@ -4,3 +4,7 @@
     padding-top: 1rem;
     border-style: solid;
   }
+
+  #password {
+    padding-bottom: 1rem;
+  }

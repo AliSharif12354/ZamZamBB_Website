@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SocialIcon } from 'react-social-icons';
 import '../Styles/Navbar_V2.css'
+import { auth } from '../Firebase';
 
 function Navbar_V2() {
   const [click, setClick] = useState(false);
@@ -10,6 +11,24 @@ function Navbar_V2() {
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  const handleSignOut = (e) => {
+    e.preventDefault();
+    if (auth.currentUser) {
+      console.log(auth.currentUser)
+    }
+    else {
+      console.log("No one is signed in right now")
+    }
+    auth.signOut()
+      .then(() => {
+        console.log("Signed out!");
+      })
+      .catch((error) => {
+        console.log("Error")
+        console.log(error);
+      });
+  }
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -36,6 +55,13 @@ function Navbar_V2() {
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
+          {auth.currentUser ? (
+            <div className="logout">
+              <button onClick={handleSignOut}>LogOut</button>
+            </div>
+          ) :  (
+            ""
+          )}
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
               <Link to='/' className='nav-links' onClick={closeMobileMenu}>
@@ -62,8 +88,8 @@ function Navbar_V2() {
             </li>
           </ul>
           <div className="nav-socials">
-            <SocialIcon url="https://www.facebook.com/ZamZam176/" target="_blank"/>
-            <SocialIcon url="https://www.instagram.com/zamzam_bag_boutique/?hl=en" target="_blank"/>
+            <SocialIcon url="https://www.facebook.com/ZamZam176/" target="_blank" />
+            <SocialIcon url="https://www.instagram.com/zamzam_bag_boutique/?hl=en" target="_blank" />
           </div>
           {/* {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>} */}
         </div>
