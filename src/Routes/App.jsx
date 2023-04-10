@@ -10,6 +10,8 @@ import Information from '../Components/Information'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { auth } from '../Firebase'
+import { files } from '../Firebase'
+import { ref, listAll } from 'firebase/storage'
 
 
 
@@ -17,6 +19,7 @@ function App() {
 
   //Get user stuff
   const [authUser, setAuthUser] = useState(null);
+  const Flyers = ref(files, "Images/Flyers/");
 
   useEffect(() => {
     auth.onAuthStateChanged(user => {

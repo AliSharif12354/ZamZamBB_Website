@@ -10,7 +10,7 @@ function Information(props) {
         <MDBContainer className='justify-content-center'>
             <MDBRow className='justify-content-center'>
                 <MDBCol className='pd-1'>
-		            <img style={{height: "100%"}} className='img-fluid hover-shadow pd-10 ' src={props.logo} alt="Image not found"/> 
+		            <img style={{height: "100%", minWidth: "400px"}} className='img-fluid hover-shadow pd-10 ' src={props.logo} alt="Image not found"/> 
                 </MDBCol>
                 <MDBCol>
                     <h1>Location</h1>

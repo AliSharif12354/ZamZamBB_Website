@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { SocialIcon } from 'react-social-icons';
 import '../Styles/Navbar_V2.css'
 import { auth } from '../Firebase';
-
+import { Navbar } from 'react-bootstrap';
 function Navbar_V2() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
@@ -46,7 +46,7 @@ function Navbar_V2() {
 
   return (
     <>
-      <nav className='navbar'>
+      <Navbar sticky='top' className='navbar navbar-fixed-top'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
             Zam Zam B&B
@@ -93,7 +93,7 @@ function Navbar_V2() {
           </div>
           {/* {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>} */}
         </div>
-      </nav>
+      </Navbar>
     </>
   );
 }
