@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getStorage } from "firebase/storage"
+import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,4 +22,28 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app)
 const files = getStorage(app)
 
-export {auth, app, files};
+const Flyers = ref(files, "Images/Flyers/");
+
+function updateFlyers() {
+  return new Promise((resolve, reject) => {
+    listAll(Flyers).then((res) => {
+      const URLs = [];
+      res.items.forEach((itemRef) => {
+        getDownloadURL(itemRef).then((url) => {
+          if (URLs.indexOf(url) === -1) {
+            URLs.push(url);
+          }
+          if (URLs.length === res.items.length) {
+            resolve(URLs);
+          }
+        }).catch((error) => {
+          reject(error);
+        });
+      });
+    }).catch((error) => {
+      reject(error);
+    });
+  });
+}
+
+export { auth, app, files, updateFlyers};
