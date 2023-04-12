@@ -23,6 +23,7 @@ const auth = getAuth(app)
 const files = getStorage(app)
 
 const Flyers = ref(files, "Images/Flyers/");
+const Other = ref(files, "Images/Other/")
 
 function updateFlyers() {
   return new Promise((resolve, reject) => {
@@ -46,4 +47,26 @@ function updateFlyers() {
   });
 }
 
-export { auth, app, files, updateFlyers};
+function updateOther() {
+  return new Promise((resolve, reject) => {
+    listAll(Other).then((res) => {
+      const URLs = [];
+      res.items.forEach((itemRef) => {
+        getDownloadURL(itemRef).then((url) => {
+          if (URLs.indexOf(url) === -1) {
+            URLs.push(url);
+          }
+          if (URLs.length === res.items.length) {
+            resolve(URLs);
+          }
+        }).catch((error) => {
+          reject(error);
+        });
+      });
+    }).catch((error) => {
+      reject(error);
+    });
+  });
+}
+
+export { auth, app, files, updateFlyers, updateOther};

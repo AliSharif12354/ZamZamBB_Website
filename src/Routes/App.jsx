@@ -1,16 +1,12 @@
 import '../Styles/App.css'
-// import Navbar from '../Components/Navbar.jsx'
 import Navbar_V2 from '../Components/Navbar_V2.jsx'
 import Flyer from '../Components/Flyer.jsx'
-// import Flyers from '../Components/Flyers.jsx'
 import Footer from '../Components/Footer.jsx'
 import Information from '../Components/Information'
-// import SignIn from '../Components/Auth/SignIn'
-// import SignUp from '../Components/Auth/SignUp'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { auth } from '../Firebase'
-import { updateFlyers } from '../Firebase'
+import { updateFlyers, updateOther } from '../Firebase'
 
 
 
@@ -18,14 +14,16 @@ function App() {
 
   //Get user stuff
   const [authUser, setAuthUser] = useState(null);
-  // const Flyers = ref(files, "Images/Flyers/");
   const [flyerURLS, setFlyerURLs] = useState([]);
+  const [otherURLS, setOtherURLs] = useState([]);
  
   useEffect(() => {
     async function fetchData() {
       try {
-        const URLs = await updateFlyers();
-        setFlyerURLs(URLs);
+        const fURLs = await updateFlyers();
+        const oURLS = await updateOther();
+        setFlyerURLs(fURLs);
+        setOtherURLs(oURLS);
       } catch (error) {
         console.log(error);
       }
@@ -72,7 +70,7 @@ function App() {
         </div>
 
       </div>
-      <Information logo="./src/Images/ZamZam.png" />
+      <Information logo={otherURLS.at(0)} />
       <Footer />
     </>
   );
