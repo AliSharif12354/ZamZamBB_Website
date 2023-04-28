@@ -70,11 +70,11 @@ function Navbar_V2() {
             </li>
             <li className='nav-item'>
               <Link
-                to='/services'
+                to='/admin'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Services
+                Sign in
               </Link>
             </li>
             <li className='nav-item'>

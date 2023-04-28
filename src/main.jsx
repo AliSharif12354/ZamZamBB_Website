@@ -6,10 +6,13 @@ import SignIn from './Routes/SignIn'
 // import AboutUs from './Routes/AbousUs'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import './index.css'
+import Products from './Routes/Products'
 
 const router = createBrowserRouter([
   {path: "/", element: <App/>},
-  {path: "/admin", element: <SignIn/>}
+  {path: "/admin", element: <SignIn/>},
+  {path: "/products", element: <Products/>}
+
   // {path: "/Featured", element: <Featured/>},
   // {path: "/AboutUs", element: <AboutUs/>}
 ]);

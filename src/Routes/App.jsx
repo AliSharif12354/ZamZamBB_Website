@@ -3,6 +3,7 @@ import Navbar_V2 from '../Components/Navbar_V2.jsx'
 import Flyer from '../Components/Flyer.jsx'
 import Footer from '../Components/Footer.jsx'
 import Information from '../Components/Information'
+import Product from '../Components/Product'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { auth } from '../Firebase'
@@ -54,6 +55,7 @@ function App() {
   return (
     <>
       <Navbar_V2 />
+      <Product name="Soft side 4 wheeler luggage" logo="src\Images\Hardshell_24inch.jpg" price="$39.99" desc="- Strong soft side - aluminum handle - tsa lock" />
 
       <div className='Flyers'>
 
@@ -63,9 +65,9 @@ function App() {
           {console.log("ALL FLYER URLS AT THIS STATE IN REACT: ", flyerURLS)}
           {
             flyerURLS.length > 0 ? flyerURLS.map((url, i) => (
-                <Flyer key={i} logo={url}></Flyer>
+                <Flyer exp = "123"logo={url}></Flyer>
               )
-            ) : <p>Loading</p>
+            ) : <p class="green">Loading</p>
           }
         </div>
 
