@@ -9,6 +9,11 @@ const Product = props => {
     return (
       <div className={styles.product}>
         <img src={props.logo} alt={props.name} />
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <h2>{props.name}</h2>
         <p>{props.desc}</p>
         <p>{props.price}</p>

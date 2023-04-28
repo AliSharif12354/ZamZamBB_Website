@@ -3,11 +3,12 @@ import Product from '../Components/Product';
 import Navbar_V2 from '../Components/Navbar_V2';
 import Footer from '../Components/Footer'
 import {collection, getDocs } from 'firebase/firestore';
-// import styles from "../Styles/Products.module.css"
+import styles from "../Styles/Products.module.css"
 import { db } from '../Firebase';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
+    var out = <></>;
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -17,23 +18,25 @@ const Products = () => {
         fetchProducts();
     }, []);
 
+    out = 
+    <>
+        <Navbar_V2/>
+        <div className={styles.products}>
+            {products.map((product) => (
+                <Product
+                    key={product.id}
+                    logo={product.imageSrc}
+                    name={product.name}
+                    desc={product.description}
+                    price={"$" + product.price}
+                />
+            ))}
+        </div>
+        <Footer/>
+    </>
+
     return (
-        <>
-            <Navbar_V2/>
-            <div className="products">
-                {products.map((product) => (
-                    console.log(product.imageSrc)
-                    <Product
-                        // key={product.id}
-                        logo={product.imageSrc}
-                        name={product.name}
-                        desc={product.description}
-                        price={"$" + product.price}
-                    />
-                ))}
-            </div>
-            <Footer/>
-        </>
+        out
     );
 };
 

@@ -55,7 +55,6 @@ function App() {
   return (
     <>
       <Navbar_V2 />
-      <Product name="Soft side 4 wheeler luggage" logo="src\Images\Hardshell_24inch.jpg" price="$39.99" desc="- Strong soft side - aluminum handle - tsa lock" />
 
       <div className='Flyers'>
 

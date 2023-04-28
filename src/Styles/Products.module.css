@@ -1,0 +1,5 @@
+.products {
+    color: black;
+    display: flex;
+    flex-direction: row;
+}
