@@ -1,0 +1,28 @@
+div.flyerDiv {
+    width: 50%;
+    height: 80vh;
+    float: left;
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/zamzambandb.appspot.com/o/Images%2FFlyers%2FFlyer_1.jpg?alt=media&token=17f7c63f-fa63-4db2-84af-5bb6d23f83da');
+    background-size: contain;
+    border: 2px solid black;
+  }
+  
+  div.productsDiv {
+    margin-left: 50%;
+    height: 80vh;
+    background-image: url('../Images/34.99.png');
+    background-size: contain;
+    border: 2px solid black;
+  }
+  
+  div.buttonDiv {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border: 1px solid black;
+    
+  }
+  
+  
