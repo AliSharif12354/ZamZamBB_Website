@@ -4,6 +4,7 @@ import Footer from '../Components/Footer';
 import '../Styles/AdminRoute.css';
 import { Button } from 'react-bootstrap';
 import { auth } from '../Firebase';
+import { useEffect, useState } from 'react';
 
 
 
@@ -12,15 +13,27 @@ export default function Admin() {
 
 
     let out = <></>;
+    console.log("this is: " + auth.currentUser)
 
-    if (!auth.currentUser) {
+    const [currentUser, setCurrentUser] = useState(null);
 
-     out = <>Route Not Found</>;
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            setCurrentUser(user);
+        });
 
+        return () => {
+            unsubscribe();
+        };
+    }, []);
+
+    if (!currentUser) {
+
+        out = <>Route Not Found</>;
 
     }
 
-    if (auth.currentUser) {
+    if (currentUser) {
         out =
             <>
                 <Navbar_V2 />

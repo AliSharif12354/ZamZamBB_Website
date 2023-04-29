@@ -10,7 +10,6 @@ import { auth } from '../Firebase'
 import { updateFlyers, updateOther } from '../Firebase'
 
 
-
 function App() {
 
   //Get user stuff
