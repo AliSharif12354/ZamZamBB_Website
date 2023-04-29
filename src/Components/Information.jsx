@@ -1,41 +1,94 @@
 import {
     MDBContainer,
     MDBCol,
-    MDBRow } from 'mdb-react-ui-kit';
+    MDBRow
+} from 'mdb-react-ui-kit';
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "../Styles/Information.module.css";
+import { Table, Card } from 'react-bootstrap';
+
+
+
+function HoursTable() {
+    return (
+        <Table bordered variant="dark" className="my-4">
+            <thead>
+                <tr>
+                    <th colSpan="2" className="text-center h2">HOURS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td className="text-center" style={{ color: "yellow" }}>Monday</td>
+                    <td className="text-center">11am - 7pm</td>
+                </tr>
+                <tr>
+                    <td className="text-center" style={{ color: "yellow" }}>Tuesday</td>
+                    <td className="text-center">11am - 7pm</td>
+                </tr>
+                <tr>
+                    <td className="text-center" style={{ color: "yellow" }}>Wednesday</td>
+                    <td className="text-center">11am - 7pm</td>
+                </tr>
+                <tr>
+                    <td className="text-center" style={{ color: "yellow" }}>Thursday</td>
+                    <td className="text-center">11am - 7pm</td>
+                </tr>
+                <tr>
+                    <td className="text-center" style={{ color: "yellow" }}>Friday</td>
+                    <td className="text-center">11am - 7pm</td>
+                </tr>
+                <tr>
+                    <td className="text-center" style={{ color: "yellow" }}>Saturday</td>
+                    <td className="text-center">12pm - 6pm</td>
+                </tr>
+                <tr>
+                    <td className="text-center" style={{ color: "yellow" }}>Sunday</td>
+                    <td className="text-center">1pm - 5pm</td>
+                </tr>
+            </tbody>
+        </Table>
+    );
+}
+
+
+
 
 function Information(props) {
-	return (
-        <MDBContainer className='justify-content-center'>
-            <MDBRow className='justify-content-center'>
-                <MDBCol className='pd-1'>
-		            <img style={{height: "100%", minWidth: "400px"}} className='img-fluid hover-shadow pd-10 ' src={props.logo} alt="Image not found"/> 
+    return (
+        <MDBContainer className="justify-content-center">
+            <MDBRow className="justify-content-center">
+                <MDBCol col="6" className="pl-1">
+                    <br />
+                    <img
+                        style={{ height: "65vh", minWidth: "600px", objectFit: "fill", borderRadius: "10px" }}
+                        className="img-fluid hover-shadow pd-0 w-100"
+                        src={props.logo}
+                        alt="Image not found"
+                    />
                 </MDBCol>
-                <MDBCol>
-                    <h1>Location</h1>
-                    <p/>
-                    <p>45 Overlea Blvd, Unit 176</p>
-                    <p>Toronto, ON, M4H 1C3</p>
-                    <p>416-817-6849</p>
-                    <p>Zamzam630@hotmail.com - Travel needs</p>
-                    <p>Zamzam630@hotmail.ca - Clothing needs</p>
+                <MDBCol col="4">
+                    <br />
+                    <Card border='info' className='text-center' bg='dark'>
+                        <Card.Header>
+                            <h1 style={{ color: "yellow" }}>Location</h1>
+                        </Card.Header>
+                        <Card.Body style={{textAlign: "center"}}>
+                            <h2 style={{ color: "white", marginBottom: "10px" }}>45 Overlea Blvd, Unit 176</h2>
+                            <p style={{ color: "white", marginBottom: "10px" }}>Toronto, ON, M4H 1C3</p>
+                            <p style={{ color: "white", marginBottom: "10px" }}>Call: 416-817-6849</p>
+                            <p style={{ color: "white", marginBottom: "10px" }}>EMAIL:</p>
+                            <p style={{ color: "white", marginBottom: "10px" }}>zamzam630@hotmail.com - <br/> Travel needs</p>
+                            <p style={{ color: "white", marginBottom: "10px" }}>zamzam630@hotmail.ca - <br/> Clothing needs</p>
+                        </Card.Body>
+                    </Card>
                 </MDBCol>
-                <MDBCol>
-                    <h1>Hours</h1>
-                    <p/>
-                    <p>Monday 11am - 7pm</p>
-                    <p>Tuesday 11am - 7pm</p>
-                    <p>Wednesday 11am - 7pm</p>
-                    <p>Thursday 11am - 7pm</p>
-                    <p>Friday 11am - 7pm</p>
-                    <p>Saturday 12pm - 6pm</p>
-                    <p>Sunday 1pm - 5pm</p>
+                <MDBCol col="4">
+                    {HoursTable()}
                 </MDBCol>
             </MDBRow>
         </MDBContainer>
-
-	);
+    );
 }
 
 export default Information;
