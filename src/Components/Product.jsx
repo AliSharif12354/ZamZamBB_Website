@@ -6,19 +6,19 @@ import Footer from "./Footer";
 import styles from '../Styles/Product.module.css'
 
 const Product = props => {
-    return (
-      <div className={styles.product}>
-        <img src={props.logo} alt={props.name} />
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <h2>{props.name}</h2>
-        <p>{props.desc}</p>
-        <p>{props.price}</p>
-      </div>
-    );
+  return (
+    <div className={styles.product}>
+      <img src={props.logo != null ? props.logo : "image not found"} alt={props.name} />
+      <br />
+      <h2>{props.name != null ? props.name : "Product name not found"}</h2>
+      <p>
+        {props.desc != null ?
+          (props.desc.length > 50 ? props.desc.slice(0, 50) + "..." : props.desc)
+          : "Product description not found"}
+      </p>
+      <p>{props.price != null ? "$" + props.price : "Price not found" }</p>
+    </div>
+  );
 };
 
 export default Product;

@@ -10,24 +10,28 @@ const EditProduct = props => {
 
     var out = <></>;
 
-    out = <div className={styles.product}>
-        <Card >
-            <Card.Img src={props.logo} alt={props.name} />
+    out = 
+        <Card bg="info" text="white">
+            <Card.Img src={props.logo != null ? props.logo : "image not found"} alt={props.name} />
             <Card.Title>
-                <h2>{props.name}</h2>
+                <h2>{props.name != null ? props.name : "Product name not found"}</h2>
             </Card.Title>
             <Card.Text>
                 <br />
-                <p>{props.desc}</p>
-                <p><strong>{props.price}</strong></p>
+                <p>
+                    {props.desc != null ?
+                    (props.desc.length > 50 ? props.desc.slice(0, 50) + "..." : props.desc)
+                    : "Product description not found"}
+                </p>
+                <p><strong>{props.price != null ? "$" + props.price : "Price not found" }</strong></p>
             </Card.Text>
             <Button variant='danger'>Delete Product</Button>
         </Card>
-    </div>
+   
 
     return (
         <>
-        {out} 
+            {out}
         </>
     );
 
