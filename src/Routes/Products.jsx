@@ -8,7 +8,6 @@ import { db } from '../Firebase';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
-    var out = <></>;
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -18,25 +17,25 @@ const Products = () => {
         fetchProducts();
     }, []);
 
-    out = 
-    <>
-        <Navbar_V2/>
-        <div className={styles.products}>
-            {products.map((product) => (
-                <Product
-                    key={product.id}
-                    logo={product.imageSrc}
-                    name={product.name}
-                    desc={product.description}
-                    price={"$" + product.price}
-                />
-            ))}
-        </div>
-        <Footer/>
-    </>
-
     return (
-        out
+        <>
+            <Navbar_V2/>
+            <div className={styles.products}>
+                {products.map((product) => (
+                    <Product
+                        key={product.id != null ? product.id : "Id not found"}
+                        logo={product.imageSrc != null ? product.imageSrc : "image not found"}
+                        name={product.name != null ? product.name : "Product name not found"}
+                        desc={product.description != null ? 
+                            (product.description.length > 50 ? product.description.slice(0, 50) + "..." : product.description) 
+                            : "Product description not found"}
+                        price={product.price != null ? "$" + product.price : "Price not found" }
+                    />
+                ))}
+                
+            </div>
+            <Footer/>
+        </>
     );
 };
 
