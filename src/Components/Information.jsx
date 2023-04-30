@@ -61,7 +61,7 @@ function Information(props) {
                 <MDBCol col="6" className="pl-1">
                     <br />
                     <img
-                        style={{ height: "65vh", minWidth: "600px", objectFit: "fill", borderRadius: "10px" }}
+                        style={{ height: "50vh", minWidth: "600px", objectFit: "fill", borderRadius: "10px" }}
                         className="img-fluid hover-shadow pd-0 w-100"
                         src={props.logo}
                         alt="Image not found"
