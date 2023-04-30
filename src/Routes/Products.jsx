@@ -29,7 +29,7 @@ const Products = () => {
                         desc={product.description != null ? 
                             (product.description.length > 50 ? product.description.slice(0, 50) + "..." : product.description) 
                             : "Product description not found"}
-                        price={product.price != null ? "$" + product.price : "Price not found" }
+                        price={product.price != null ?  product.price : "Price not found" }
                     />
                 ))}
                 
