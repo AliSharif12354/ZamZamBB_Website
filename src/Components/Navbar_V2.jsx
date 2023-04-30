@@ -59,24 +59,37 @@ function Navbar_V2() {
             <div className="logout">
               <button onClick={handleSignOut}>LogOut</button>
             </div>
-          ) :  (
+          ) : (
             ""
           )}
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+            {auth.currentUser ? (
+              <li>
+                <Link to='/adminRoute' className='nav-links' onClick={closeMobileMenu}>
+                  Admin
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
             <li className='nav-item'>
               <Link to='/' className='nav-links' onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link
-                to='/signinadmin'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Sign in
-              </Link>
-            </li>
+            {!auth.currentUser ? ( //if not signed in show sign in, if signed in hide.
+              <li className='nav-item'>
+                <Link
+                  to='/signinadmin'
+                  className='nav-links'
+                  onClick={closeMobileMenu}
+                >
+                  Sign in
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
             <li className='nav-item'>
               <Link
                 to='/products'
