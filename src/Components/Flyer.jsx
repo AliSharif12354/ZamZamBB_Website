@@ -1,32 +1,40 @@
 import { useRef, useState } from "react";
-import "../Styles/Flyer.module.css";
-import { Card, Modal, Button } from "react-bootstrap"
+import { Card, Modal, Button } from "react-bootstrap";
 
 function Flyer(props) {
-	const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-	const handleCloseModal = () => setShowModal(false);
-	const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+  const handleShowModal = () => setShowModal(true);
 
-	let out = <></>
+  let out = <></>;
 
-	out = (
-		<>
-			<img className="img-fluid hover-shadow" onClick={handleShowModal} style={{ cursor: "pointer" }} src={props.logo} alt="Image not found" />
-			{console.log("URL OF THIS FLYER: ", props.logo)}
+  out = (
+    <>
+      <img
+        className="img-fluid hover-shadow"
+        onClick={handleShowModal}
+        style={{ cursor: "pointer", padding: 0 }}
+        src={props.logo}
+        alt="Image not found"
+      />
+      {console.log("URL OF THIS FLYER: ", props.logo)}
 
-			<Modal show={showModal} onHide={handleCloseModal} >
-				<Modal.Body className="text-center">
-					<img src={props.logo != null ? props.logo : "image not found"} alt="Flyer not found" />
-					{/* <p className="card-description">{props.desc != null ? props.desc : "Product description not found"}</p> */}
-				</Modal.Body>
-			</Modal>
-		</>
-	);
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Body className="text-center p-0">
+          <img
+            src={props.logo != null ? props.logo : "image not found"}
+            alt="Flyer not found"
+            className="w-100 h-100"
+            style={{ objectFit: "contain" }}
+          />
+        </Modal.Body>
+      </Modal>
+    </>
+  );
 
-	return (
-		out
-	);
+  return out;
 }
 
 export default Flyer;
+

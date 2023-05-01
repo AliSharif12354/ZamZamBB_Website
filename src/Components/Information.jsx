@@ -19,32 +19,32 @@ function HoursTable() {
             </thead>
             <tbody>
                 <tr>
-                    <td className="text-center" style={{ color: "yellow" }}>Monday</td>
-                    <td className="text-center">11am - 7pm</td>
+                    <td className="text-center" style={{ color: "black", background: "white" }}>Monday</td>
+                    <td className="text-center" style={{ color: "black", background: "white" }}>11am - 7pm</td>
                 </tr>
                 <tr>
-                    <td className="text-center" style={{ color: "yellow" }}>Tuesday</td>
-                    <td className="text-center">11am - 7pm</td>
+                    <td className="text-center" style={{ color: "black", background: "white" }}>Tuesday</td>
+                    <td className="text-center" style={{ color: "black", background: "white" }}>11am - 7pm</td>
                 </tr>
                 <tr>
-                    <td className="text-center" style={{ color: "yellow" }}>Wednesday</td>
-                    <td className="text-center">11am - 7pm</td>
+                    <td className="text-center" style={{ color: "black", background: "white" }}>Wednesday</td>
+                    <td className="text-center" style={{ color: "black", background: "white" }}>11am - 7pm</td>
                 </tr>
                 <tr>
-                    <td className="text-center" style={{ color: "yellow" }}>Thursday</td>
-                    <td className="text-center">11am - 7pm</td>
+                    <td className="text-center" style={{ color: "black", background: "white" }}>Thursday</td>
+                    <td className="text-center" style={{ color: "black", background: "white" }}>11am - 7pm</td>
                 </tr>
                 <tr>
-                    <td className="text-center" style={{ color: "yellow" }}>Friday</td>
-                    <td className="text-center">11am - 7pm</td>
+                    <td className="text-center" style={{ color: "black", background: "white" }}>Friday</td>
+                    <td className="text-center" style={{ color: "black", background: "white" }}>11am - 7pm</td>
                 </tr>
                 <tr>
-                    <td className="text-center" style={{ color: "yellow" }}>Saturday</td>
-                    <td className="text-center">12pm - 6pm</td>
+                    <td className="text-center" style={{ color: "black", background: "white" }}>Saturday</td>
+                    <td className="text-center" style={{ color: "black", background: "white" }}>12pm - 6pm</td>
                 </tr>
                 <tr>
-                    <td className="text-center" style={{ color: "yellow" }}>Sunday</td>
-                    <td className="text-center">1pm - 5pm</td>
+                    <td className="text-center" style={{ color: "black", background: "white" }}>Sunday</td>
+                    <td className="text-center" style={{ color: "black", background: "white" }}>1pm - 5pm</td>
                 </tr>
             </tbody>
         </Table>
@@ -52,13 +52,11 @@ function HoursTable() {
 }
 
 
-
-
 function Information(props) {
     return (
         <MDBContainer className="justify-content-center">
             <MDBRow className="justify-content-center">
-                <MDBCol col="4">
+                <MDBCol col="auto">
                     <br />
                     <Card border='info' className='text-center' bg='dark'>
                         <Card.Header>
@@ -66,19 +64,20 @@ function Information(props) {
                         </Card.Header>
                         <Card.Body style={{ textAlign: "center" }}>
                             <h2 style={{ color: "white", marginBottom: "10px" }}>45 Overlea Blvd, Unit 176</h2>
+                            <h2 style={{ color: "white", marginBottom: "10px" }}>East York Town Center</h2>
                             <p style={{ color: "white", marginBottom: "10px" }}>Toronto, ON, M4H 1C3</p>
                             <p style={{ color: "white", marginBottom: "10px" }}>Call: 416-817-6849</p>
                             <p style={{ color: "white", marginBottom: "10px" }}>EMAIL:</p>
-                            <p style={{ color: "white", marginBottom: "10px" }}>zamzam630@hotmail.com - <br /> Travel needs</p>
-                            <p style={{ color: "white", marginBottom: "10px" }}>zamzam630@hotmail.ca - <br /> Clothing needs</p>
+                            <p style={{ color: "white", marginBottom: "10px" }}> - zamzam630@hotmail.com - <br /> Travel Needs</p>
+                            <p style={{ color: "white", marginBottom: "10px" }}> - zamzam630@hotmail.ca - <br /> Clothing Needs</p>
                         </Card.Body>
                     </Card>
                 </MDBCol>
-                <MDBCol col="4">
+                <MDBCol col="6">
                     {HoursTable()}
                 </MDBCol>
             </MDBRow>
-            <MDBCol col="6" className="pl-1">
+            <MDBCol col="12" className="pl-1">
                 <br />
                 <img
                     style={{ height: "50%", minWidth: "50%", objectFit: "fill", borderRadius: "10px" }}
@@ -87,8 +86,7 @@ function Information(props) {
                     alt="Image not found"
                 />
             </MDBCol>
-            <br/><br/><br/>
-
+            <br /><br /><br />
         </MDBContainer>
     );
 }

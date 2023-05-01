@@ -54,10 +54,10 @@ export default function EditProductsRoute() {
                             <Col lg={3} key={product.id}>
                                 <EditProduct
                                     key={product.id}
-                                    logo={product.imageSrc}
-                                    name={product.name}
-                                    desc={product.description}
-                                    price={"$" + product.price}
+                                    logo={product.imageSrc != null ? product.imageSrc : "image not found"}
+                                    name={product.name != null ? product.name : "Product name not found"}
+                                    desc={product.description != null ? product.description : "description not found"}
+                                    price={product.price != null ? product.price : "Price not found"}
                                 />
                             </Col>
                         ))}

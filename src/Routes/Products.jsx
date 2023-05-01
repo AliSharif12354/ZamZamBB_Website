@@ -44,12 +44,10 @@ const Products = () => {
                     {products.map((product) => (
                         <Col lg={3} key={product.id}>
                             <Product
-                                key={product.imageSrc != null ? product.imageSrc : "image not found"}
+                                key={product.id}
                                 logo={product.imageSrc != null ? product.imageSrc : "image not found"}
                                 name={product.name != null ? product.name : "Product name not found"}
-                                desc={product.description != null ?
-                                    (product.description.length > 50 ? product.description.slice(0, 50) + "..." : product.description)
-                                    : "Product description not found"}
+                                desc={product.description != null ? product.description : "description not found"}
                                 price={product.price != null ? product.price : "Price not found"}
                             />
                         </Col>
