@@ -1,13 +1,9 @@
 import { Card, Modal, Button } from "react-bootstrap"
 import React, { useState, useEffect } from 'react';
 import { auth } from "../Firebase";
-import Navbar_V2 from "./Navbar_V2";
-import Footer from "./Footer";
 import '../Styles/EditProduct.css'
 
 const EditProduct = props => {
-
-
 
     var out = <></>;
     const [currentUser, setCurrentUser] = useState(null); //use state currentUser to hold auth user

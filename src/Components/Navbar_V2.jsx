@@ -5,9 +5,11 @@ import { SocialIcon } from 'react-social-icons';
 import '../Styles/Navbar_V2.css'
 import { auth } from '../Firebase';
 import { Navbar } from 'react-bootstrap';
+
 function Navbar_V2() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -40,6 +42,17 @@ function Navbar_V2() {
 
   useEffect(() => {
     showButton();
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        console.log("There currently is a user signed in with the email: ")
+        console.log(user.email)
+        setAuthUser(user)
+      }
+      else {
+        console.log("There currently is no one signed in right now.")
+        setAuthUser(null)
+      }
+    })
   }, []);
 
   window.addEventListener('resize', showButton);
