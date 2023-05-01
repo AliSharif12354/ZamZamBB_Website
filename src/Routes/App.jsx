@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { auth } from '../Firebase'
 import { updateFlyers, updateOther } from '../Firebase'
+import { Card, Modal, Button } from "react-bootstrap"
 
 
 function App() {
