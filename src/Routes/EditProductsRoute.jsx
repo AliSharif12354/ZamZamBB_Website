@@ -3,7 +3,7 @@ import EditProduct from '../Components/EditProduct';
 import Navbar_V2 from '../Components/Navbar_V2';
 import Footer from '../Components/Footer'
 import { collection, getDocs } from 'firebase/firestore';
-import styles from "../Styles/Products.module.css"
+import styles from '../Styles/EditProduct.css'
 import { db } from '../Firebase';
 import { Row, Col, Container } from 'react-bootstrap';
 import { auth } from '../Firebase';

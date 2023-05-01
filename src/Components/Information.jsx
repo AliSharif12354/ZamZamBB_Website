@@ -19,32 +19,32 @@ function HoursTable() {
             </thead>
             <tbody>
                 <tr>
-                    <td className="text-center" style={{ color: "black", background: "white" }}>Monday</td>
-                    <td className="text-center" style={{ color: "black", background: "white" }}>11am - 7pm</td>
+                    <td className="text-center" style={{ color: "black", background: "white", fontSize: "150%" }}>Monday</td>
+                    <td className="text-center" style={{ color: "black", background: "white", fontSize: "150%" }}>11am - 7pm</td>
                 </tr>
                 <tr>
-                    <td className="text-center" style={{ color: "black", background: "white" }}>Tuesday</td>
-                    <td className="text-center" style={{ color: "black", background: "white" }}>11am - 7pm</td>
+                    <td className="text-center" style={{ color: "black", background: "white", fontSize: "150%"   }}>Tuesday</td>
+                    <td className="text-center" style={{ color: "black", background: "white", fontSize: "150%"  }}>11am - 7pm</td>
                 </tr>
                 <tr>
-                    <td className="text-center" style={{ color: "black", background: "white" }}>Wednesday</td>
-                    <td className="text-center" style={{ color: "black", background: "white" }}>11am - 7pm</td>
+                    <td className="text-center" style={{ color: "black", background: "white", fontSize: "150%"  }}>Wednesday</td>
+                    <td className="text-center" style={{ color: "black", background: "white", fontSize: "150%"  }}>11am - 7pm</td>
                 </tr>
                 <tr>
-                    <td className="text-center" style={{ color: "black", background: "white" }}>Thursday</td>
-                    <td className="text-center" style={{ color: "black", background: "white" }}>11am - 7pm</td>
+                    <td className="text-center" style={{ color: "black", background: "white", fontSize: "150%"  }}>Thursday</td>
+                    <td className="text-center" style={{ color: "black", background: "white", fontSize: "150%"  }}>11am - 7pm</td>
                 </tr>
                 <tr>
-                    <td className="text-center" style={{ color: "black", background: "white" }}>Friday</td>
-                    <td className="text-center" style={{ color: "black", background: "white" }}>11am - 7pm</td>
+                    <td className="text-center" style={{ color: "black", background: "white", fontSize: "150%"  }}>Friday</td>
+                    <td className="text-center" style={{ color: "black", background: "white", fontSize: "150%"  }}>11am - 7pm</td>
                 </tr>
                 <tr>
-                    <td className="text-center" style={{ color: "black", background: "white" }}>Saturday</td>
-                    <td className="text-center" style={{ color: "black", background: "white" }}>12pm - 6pm</td>
+                    <td className="text-center" style={{ color: "black", background: "white", fontSize: "150%"  }}>Saturday</td>
+                    <td className="text-center" style={{ color: "black", background: "white", fontSize: "150%"  }}>12pm - 6pm</td>
                 </tr>
                 <tr>
-                    <td className="text-center" style={{ color: "black", background: "white" }}>Sunday</td>
-                    <td className="text-center" style={{ color: "black", background: "white" }}>1pm - 5pm</td>
+                    <td className="text-center" style={{ color: "black", background: "white", fontSize: "150%"  }}>Sunday</td>
+                    <td className="text-center" style={{ color: "black", background: "white", fontSize: "150%"  }}>1pm - 5pm</td>
                 </tr>
             </tbody>
         </Table>
@@ -53,6 +53,9 @@ function HoursTable() {
 
 
 function Information(props) {
+
+    const loc = "https://www.google.com/maps/place/Zam+Zam+Bags+%26+Boutique/@43.7057991,-79.3486025,17z/data=!3m1!4b1!4m6!3m5!1s0x89d4cd34ccf10d77:0x52a8a954000f98c3!8m2!3d43.7057953!4d-79.3460276!16s%2Fg%2F11j03r8d3_"
+
     return (
         <MDBContainer className="justify-content-center">
             <MDBRow className="justify-content-center">
@@ -63,13 +66,15 @@ function Information(props) {
                             <h1 style={{ color: "yellow" }}>Location</h1>
                         </Card.Header>
                         <Card.Body style={{ textAlign: "center" }}>
-                            <h2 style={{ color: "white", marginBottom: "10px" }}>45 Overlea Blvd, Unit 176</h2>
+                            <h1 style={{ color: "white", marginBottom: "10px" }}><a href={loc} target="_blank">45 Overlea Blvd, Unit 176</a></h1>
                             <h2 style={{ color: "white", marginBottom: "10px" }}>East York Town Center</h2>
                             <p style={{ color: "white", marginBottom: "10px" }}>Toronto, ON, M4H 1C3</p>
-                            <p style={{ color: "white", marginBottom: "10px" }}>Call: 416-817-6849</p>
+                            <h3 style={{ color: "white", marginBottom: "10px" }}>Call: 416-817-6849</h3>
                             <p style={{ color: "white", marginBottom: "10px" }}>EMAIL:</p>
-                            <p style={{ color: "white", marginBottom: "10px" }}> - zamzam630@hotmail.com - <br /> Travel Needs</p>
-                            <p style={{ color: "white", marginBottom: "10px" }}> - zamzam630@hotmail.ca - <br /> Clothing Needs</p>
+                            <h3 style={{ color: "white", marginBottom: "10px" }}> - zamzam630@hotmail.com - <br /></h3> 
+                            <p style={{ color: "white", marginBottom: "10px" }}>Travel Needs</p>
+                            <h3 style={{ color: "white", marginBottom: "10px" }}> - zamzam630@hotmail.ca - <br /></h3>
+                            <p style={{ color: "white", marginBottom: "10px" }}>Clothing Needs</p>
                         </Card.Body>
                     </Card>
                 </MDBCol>

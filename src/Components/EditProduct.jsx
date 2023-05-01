@@ -43,7 +43,7 @@ const EditProduct = props => {
 
         out =
             <>
-                <Card bg="dark" text="white" className="product-card" onClick={handleShowModal} style={{ cursor: "pointer" }}>
+                <Card bg="dark" text="white" className="editproduct-card" onClick={handleShowModal} style={{ cursor: "pointer" }}>
                     <Card.Img src={props.logo != null ? props.logo : "image not found"} alt={props.name} />
                     <Card.Body>
                         <Card.Title className="text-center">

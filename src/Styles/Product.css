@@ -1,6 +1,6 @@
 .product-card {
-  height: 100%;
-  margin-bottom: 20px;
+  height: 95%;
+  margin-bottom: 25%;
 }
 
 .product-card .card-text {
@@ -9,32 +9,22 @@
 
 .product-card .card-description {
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 0%;
 }
 
 .product-card .card-price {
-  font-size: 16px;
+  font-size: 300%;
+  color: yellow;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 }
 
 .product-card .card-img {
   height: 200px;
   object-fit: cover;
-}
-
-.product-card .card-body {
-  padding: 10px;
-}
-
-.product-card .delete-button {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-}
-
-.product-card .soldout-button {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
 }
 
 .modal-header .modal-title {
@@ -54,7 +44,6 @@
 
 .modal-footer {
   border-top: 0;
-  padding: 5px;
   justify-content: center;
 }
 
@@ -62,3 +51,8 @@
   margin-right: auto;
   margin-left: auto;
 }
+
+.modal-body {
+  padding-bottom: 0px;
+}
+
