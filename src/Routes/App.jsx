@@ -60,6 +60,7 @@ function App() {
 
         <h2>Our Current Flyers</h2>
         <h3>First come first serve, don't miss your chance!</h3>
+        <br />
         <div>
           {console.log("ALL FLYER URLS AT THIS STATE IN REACT: ", flyerURLS)}
           {
