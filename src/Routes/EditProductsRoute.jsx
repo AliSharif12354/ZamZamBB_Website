@@ -52,8 +52,9 @@ export default function EditProductsRoute() {
                     <Row className="gy-4 justify-content-center">
                         {products.map((product) => (
                             <Col lg={3} key={product.id}>
+                                {/* {console.log(product.id)} */}
                                 <EditProduct
-                                    key={product.id}
+                                    pId={product.id}
                                     logo={product.imageSrc != null ? product.imageSrc : "image not found"}
                                     name={product.name != null ? product.name : "Product name not found"}
                                     desc={product.description != null ? product.description : "description not found"}

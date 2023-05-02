@@ -42,7 +42,7 @@ export default function Admin() {
 
                         <div className='buttonDiv'>
                             <Link to='/editFlyers'>
-                                <Button variant='success' style={{ fontSize: '60px', padding: '10px 20px' }}>
+                                <Button variant='success' className='custom-button'>
                                     Edit Flyers
                                 </Button>
                             </Link>
@@ -52,7 +52,7 @@ export default function Admin() {
                     <div className='productsDiv'>
                         <div className='buttonDiv'>
                             <Link to='/editProducts'>
-                                <Button variant='success' style={{ fontSize: '60px', padding: '10px 20px' }}>
+                                <Button variant='success' className='custom-button'>
                                     Edit Products
                                 </Button>
                             </Link>
@@ -61,7 +61,7 @@ export default function Admin() {
                 </div>
                 <Footer />
             </>
-            
+
     }
 
     return (

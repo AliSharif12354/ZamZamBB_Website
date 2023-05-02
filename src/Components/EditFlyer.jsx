@@ -14,6 +14,8 @@ export default function EditFlyer(props) {
 
  
   let out = <></>;
+  console.log(props.fId)
+
 
   out = (
     <>

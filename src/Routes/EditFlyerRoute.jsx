@@ -53,8 +53,7 @@ export default function EditFlyerRoute() {
             {flyers.length > 0 ? flyers.map((flyer) => (
               <Col lg={3} key={flyer.id}>
 
-                <EditFlyer logo={flyer.imgSrc}/>
-                {console.log(flyer)}
+                <EditFlyer fId={flyer.id} logo={flyer.imgSrc}/>
 
               </Col>
             )) : <p className="green">Loading</p>

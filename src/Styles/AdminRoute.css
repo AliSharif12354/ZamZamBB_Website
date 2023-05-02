@@ -24,5 +24,38 @@ div.flyerDiv {
     border: 1px solid black;
     
   }
+
+  .custom-button {
+    font-size: 500%;
+    padding: 10px 20px;
+  }
+  
+
+  @media (max-width: 767px) {
+    div.flyerDiv,
+    div.productsDiv {
+      width: 100%;
+      height: 50%;
+      margin-left: 0;
+      float: none;
+    }
+  
+    .buttonDiv {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50%;
+      padding: 20px;
+      text-align: center; /* center the button horizontally */
+    }
+  
+    .custom-button {
+      font-size: 250%;
+      padding: 10px 20px;
+    }
+  }
+  
+
+
   
   
