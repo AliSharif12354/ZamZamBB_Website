@@ -10,6 +10,7 @@ function Navbar_V2() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authUser, setAuthUser] = useState(null);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
