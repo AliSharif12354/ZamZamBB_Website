@@ -57,8 +57,9 @@ const EditProduct = props => {
                             </p>
                             <p className="text-center card-price"><strong>{props.price != null ? "$" + props.price : "Price not found"}</strong></p>
                         </Card.Text>
-                        <Button variant='danger' className='delete-button' onClick={(e) => { e.stopPropagation(); handleEditProductClick() }}>Edit Product</Button>
-                        <Button variant='warning' className='soldout-button' onClick={(e) => { e.stopPropagation(); handleNoInventoryClick() }}>No Inventory</Button>
+                        <Button variant='danger' className='delete-button' onClick={handleEditProductClick}>Edit Product</Button>
+                        <Button variant='warning' className='soldout-button' onClick={handleNoInventoryClick}>No Inventory</Button>
+
 
                     </Card.Body>
                 </Card>
