@@ -78,7 +78,7 @@ function Navbar_V2() {
           )}
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             {auth.currentUser ? (
-              <li>
+              <li id='0' className='nav-item'>
                 <Link to='/adminRoute' className='nav-links' onClick={closeMobileMenu}>
                   Admin
                 </Link>
@@ -86,7 +86,7 @@ function Navbar_V2() {
             ) : (
               ""
             )}
-            <li className='nav-item'>
+            <li id='1' className='nav-item'>
               <Link to='/' className='nav-links' onClick={closeMobileMenu}>
                 Home
               </Link>
@@ -104,7 +104,7 @@ function Navbar_V2() {
             ) : (
               ""
             )}
-            <li className='nav-item'>
+            <li id='2' className='nav-item'>
               <Link
                 to='/products'
                 className='nav-links'
