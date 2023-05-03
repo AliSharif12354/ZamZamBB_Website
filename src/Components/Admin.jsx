@@ -39,7 +39,6 @@ export default function Admin() {
                 <Navbar_V2 />
                 <div style={{ width: '100%', height: '80vh' }}>
                     <div className='flyerDiv'>
-
                         <div className='buttonDiv'>
                             <Link to='/editFlyers'>
                                 <Button variant='success' className='custom-button'>
@@ -47,7 +46,6 @@ export default function Admin() {
                                 </Button>
                             </Link>
                         </div>
-
                     </div>
                     <div className='productsDiv'>
                         <div className='buttonDiv'>
