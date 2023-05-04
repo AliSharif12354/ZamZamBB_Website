@@ -21,19 +21,19 @@ export default function AddProduct() {
 
     const handleImageChange = (event) => {
         if (event.target.files) {
-        
+
             const tempImages = [];
             for (let i = 0; i < event.target.files.length; i++) {
 
                 images.push(event.target.files[i]);
-            
+
             }
-            
+
             setImages(tempImages);
-        
+
         }
     };
-    
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -98,7 +98,7 @@ export default function AddProduct() {
         out =
             <>
                 <Navbar_V2 />
-                <div  className='formContainer'>
+                <div className='formContainer'>
                     <form onSubmit={handleSubmit}>
                         <label className='formItem' htmlFor='image'>Image:</label>
                         <input type='file' id='image' onChange={handleImageChange} required multiple />
@@ -111,7 +111,7 @@ export default function AddProduct() {
                         <br />
 
                         <label className='formItem' htmlFor='description'>Description:</label>
-                        <input type='text' id='description' style={{ width: '300px', height: '100px' }} value={description} onChange={(e) => setDescription(e.target.value)} required />
+                        <textarea id='description' style={{ width: '300px', height: '100px' }} value={description} onChange={(e) => setDescription(e.target.value)} required />
                         <br />
                         <br />
 
