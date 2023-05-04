@@ -1,0 +1,19 @@
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+  
+  .formItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1px;
+    padding-top: 1px;
+
+  }

@@ -45,7 +45,7 @@ const Products = () => {
                         <Col lg={3} key={product.id}>
                             <Product
                                 key={product.id}
-                                logo={product.imageSrc != null ? product.imageSrc : "image not found"}
+                                imgs={product.imageSrc.length != 0 ? product.imageSrc : "image not found"}
                                 name={product.name != null ? product.name : "Product name not found"}
                                 desc={product.description != null ? product.description : "description not found"}
                                 price={product.price != null ? product.price : "Price not found"}

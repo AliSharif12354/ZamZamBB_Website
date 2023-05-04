@@ -1,4 +1,4 @@
-import { Card, Modal, Button } from "react-bootstrap"
+import { Card, Modal, Button, Carousel } from "react-bootstrap"
 import React, { useState, useEffect } from 'react';
 import { auth } from "../Firebase";
 import '../Styles/EditProduct.css'
@@ -23,15 +23,6 @@ const EditProduct = props => {
 
     }, []);
 
-    const handleEditProductClick = () => {
-        console.log("Edit Product clicked");
-    }
-
-    const handleNoInventoryClick = () => {
-        console.log("No Inventory clicked");
-    }
-
-
 
     if (!currentUser) {
 
@@ -42,12 +33,47 @@ const EditProduct = props => {
     if (currentUser) {
 
         //console.log(props.pId);
+        const handleEditProductClick = () => {
+            console.log("Edit Product clicked");
+        }
+
+        const handleNoInventoryClick = () => {
+            console.log("No Inventory clicked");
+        }
+
+        const renderImages = () => {
+            if (props.imgs && props.imgs.length > 0) {
+                return props.imgs.map((image, index) => {
+                    return (
+                        <Carousel.Item key={index}>
+                            <img
+                                className="d-block w-100"
+                                src={image}
+                                alt={props.name}
+                            />
+                        </Carousel.Item>
+                    )
+                })
+            } else {
+                return (
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={props.imgs != null ? props.imgs : "image not found"}
+                            alt={props.name}
+                        />
+                    </Carousel.Item>
+                )
+            }
+        }
 
         out =
             <>
-                <Card bg="dark" text="white" className="editproduct-card" onClick={handleShowModal} style={{ cursor: "pointer" }}>
-                    <Card.Img src={props.logo != null ? props.logo : "image not found"} alt={props.name} />
-                    <Card.Body>
+                <Card bg="dark" text="white" className="editproduct-card" style={{ cursor: "pointer" }}>
+                    <Carousel interval={null}>
+                        {renderImages()}
+                    </Carousel>
+                    <Card.Body onClick={handleShowModal}>
                         <Card.Title className="text-center">
                             <h2 className="card-title">{props.name != null ? props.name : "Product name not found"}</h2>
                         </Card.Title>
@@ -69,7 +95,9 @@ const EditProduct = props => {
                         <Modal.Title>{props.name}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body className="text-center">
-                        <img src={props.logo != null ? props.logo : "image not found"} alt={props.name} />
+                        <Carousel>
+                            {renderImages()}
+                        </Carousel>
                         <p className="card-description">{props.desc != null ? props.desc : "Product description not found"}</p>
                         <p className="text-center card-price"><strong>{props.price != null ? "$" + props.price : "Price not found"}</strong></p>
                     </Modal.Body>

@@ -6,6 +6,8 @@ import Products from './Routes/Products'
 import AdminRoute from './Routes/AdminRoute'
 import EditProductsRoute from './Routes/EditProductsRoute'
 import EditFlyerRoute from './Routes/EditFlyerRoute'
+import AddProductRoute from './Routes/AddProductRoute'
+
 
 // import Featured from './Routes/Featured'
 // import AboutUs from './Routes/AbousUs'
@@ -19,6 +21,7 @@ const router = createBrowserRouter([
   {path: "/adminRoute", element: <AdminRoute/>},
   {path: "/editFlyers", element: <EditFlyerRoute/>},
   {path: "/editProducts", element: <EditProductsRoute/>},
+  {path: "/addProduct", element: <AddProductRoute/>},
   // {path: "/Featured", element: <Featured/>},
   // {path: "/AboutUs", element: <AboutUs/>}
 ]);
