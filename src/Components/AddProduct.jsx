@@ -106,11 +106,13 @@ export default function AddProduct() {
                         <br />
 
                         <label className='formItem' htmlFor='name'>Name:</label>
-                        <input type='text' id='name' value={name} onChange={(e) => setName(e.target.value)} required />
+                        <input type='text' id='name' maxLength={30} value={name} onChange={(e) => setName(e.target.value)} required />
+                        <br />
                         <br />
 
                         <label className='formItem' htmlFor='description'>Description:</label>
-                        <input type='text' id='description' value={description} onChange={(e) => setDescription(e.target.value)} required />
+                        <input type='text' id='description' style={{ width: '300px', height: '100px' }} value={description} onChange={(e) => setDescription(e.target.value)} required />
+                        <br />
                         <br />
 
                         <label className='formItem' htmlFor='price'>Price:</label>
@@ -119,7 +121,7 @@ export default function AddProduct() {
                         <br />
 
                         <label className='formItem'><u>In Stock?:</u></label>
-                        <input type='radio' id='inStockTrue' name='inStock' value={true} onChange={(e) => setInStock(true)} />
+                        <input type='radio' id='inStockTrue' name='inStock' value={true} onChange={(e) => setInStock(true)} required />
                         {'   '}
                         <label htmlFor='inStockTrue'>Yes</label>
                         <br />
@@ -131,7 +133,7 @@ export default function AddProduct() {
                         <br />
 
                         <label className='formItem'>Is Product A&nbsp;<u>Luggage?</u> :</label>
-                        <input type='radio' id='isLuggageTrue' name='isLuggage' value={true} onChange={(e) => setIsLuggage(true)}  />
+                        <input type='radio' id='isLuggageTrue' name='isLuggage' value={true} onChange={(e) => setIsLuggage(true)} required />
                         {'   '}
                         <label htmlFor='isLuggageTrue'>Yes</label>
                         <br />
@@ -143,7 +145,7 @@ export default function AddProduct() {
                         <br />
 
                         <label className='formItem'>Is Product A&nbsp;<u>Clothing?:</u> </label>
-                        <input type='radio' id='isClothingTrue' name='isClothing' value={true} onChange={(e) => setIsClothing(true)} />
+                        <input type='radio' id='isClothingTrue' name='isClothing' value={true} onChange={(e) => setIsClothing(true)} required />
                         {'   '}
                         <label htmlFor='isClothingTrue'>Yes</label>
                         <br />
@@ -155,7 +157,7 @@ export default function AddProduct() {
                         <br />
 
                         <label className='formItem'>Is Product A&nbsp;<u>Best Seller?:</u></label>
-                        <input type='radio' id='isBestSellerTrue' name='isBestSeller' value={true} onChange={(e) => setIsBestSeller(true)} />
+                        <input type='radio' id='isBestSellerTrue' name='isBestSeller' value={true} onChange={(e) => setIsBestSeller(true)} required />
                         {'   '}
                         <label htmlFor='isBestSellerTrue'>Yes</label>
                         <br />
