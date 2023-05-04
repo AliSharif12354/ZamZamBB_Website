@@ -21,11 +21,16 @@ export default function AddProduct() {
 
     const handleImageChange = (event) => {
         if (event.target.files) {
-            const images = [];
+        
+            const tempImages = [];
             for (let i = 0; i < event.target.files.length; i++) {
+
                 images.push(event.target.files[i]);
+            
             }
-            setImages(images);
+            
+            setImages(tempImages);
+        
         }
     };
     
@@ -100,67 +105,66 @@ export default function AddProduct() {
                         <br />
                         <br />
 
-
-                        <label className='formItem' htmlFor='description'>Description:</label>
-                        <input type='text' id='description' value={description} onChange={(e) => setDescription(e.target.value)} required />
-                        <br />
-
-
                         <label className='formItem' htmlFor='name'>Name:</label>
                         <input type='text' id='name' value={name} onChange={(e) => setName(e.target.value)} required />
                         <br />
 
+                        <label className='formItem' htmlFor='description'>Description:</label>
+                        <input type='text' id='description' value={description} onChange={(e) => setDescription(e.target.value)} required />
+                        <br />
 
                         <label className='formItem' htmlFor='price'>Price:</label>
                         <input type='number' id='price' value={price} onChange={(e) => setPrice(e.target.value)} required />
                         <br />
                         <br />
 
-
-
-                        <label className='formItem'>In stock:</label>
+                        <label className='formItem'><u>In Stock?:</u></label>
                         <input type='radio' id='inStockTrue' name='inStock' value={true} onChange={(e) => setInStock(true)} />
-                        <label htmlFor='inStockTrue'>True</label>
+                        {'   '}
+                        <label htmlFor='inStockTrue'>Yes</label>
+                        <br />
                         {'   '}
                         <input type='radio' id='inStockFalse' name='inStock' value={false} onChange={(e) => setInStock(false)} />
-                        <label htmlFor='inStockFalse'> False </label>
+                        {'   '}
+                        <label htmlFor='inStockFalse'> No </label>
                         <br />
                         <br />
 
-
-
-                        <label className='formItem'>Is luggage:</label>
+                        <label className='formItem'>Is Product A&nbsp;<u>Luggage?</u> :</label>
                         <input type='radio' id='isLuggageTrue' name='isLuggage' value={true} onChange={(e) => setIsLuggage(true)}  />
-                        <label htmlFor='isLuggageTrue'>True</label>
+                        {'   '}
+                        <label htmlFor='isLuggageTrue'>Yes</label>
+                        <br />
                         {'   '}
                         <input type='radio' id='isLuggageFalse' name='isLuggage' value={false} onChange={(e) => setIsLuggage(false)} />
-                        <label htmlFor='isLuggageFalse'>False</label>
+                        {'   '}
+                        <label htmlFor='isLuggageFalse'>No</label>
                         <br />
                         <br />
 
-
-
-                        <label className='formItem'>Is clothing:</label>
+                        <label className='formItem'>Is Product A&nbsp;<u>Clothing?:</u> </label>
                         <input type='radio' id='isClothingTrue' name='isClothing' value={true} onChange={(e) => setIsClothing(true)} />
-                        <label htmlFor='isClothingTrue'>True</label>
+                        {'   '}
+                        <label htmlFor='isClothingTrue'>Yes</label>
+                        <br />
                         {'   '}
                         <input type='radio' id='isClothingFalse' name='isClothing' value={false} onChange={(e) => setIsClothing(false)} />
-                        <label htmlFor='isClothingFalse'>False</label>
+                        {'   '}
+                        <label htmlFor='isClothingFalse'>No</label>
                         <br />
                         <br />
 
-
-
-                        <label className='formItem'>Is best seller:</label>
+                        <label className='formItem'>Is Product A&nbsp;<u>Best Seller?:</u></label>
                         <input type='radio' id='isBestSellerTrue' name='isBestSeller' value={true} onChange={(e) => setIsBestSeller(true)} />
-                        <label htmlFor='isBestSellerTrue'>True</label>
+                        {'   '}
+                        <label htmlFor='isBestSellerTrue'>Yes</label>
+                        <br />
                         {'   '}
                         <input type='radio' id='isBestSellerFalse' name='isBestSeller' value={false} onChange={(e) => setIsBestSeller(false)} />
-                        <label htmlFor='isBestSellerFalse'>False</label>
+                        {'   '}
+                        <label htmlFor='isBestSellerFalse'>No</label>
                         <br />
                         <br />
-
-
                         <Button className='success' type='submit'>Add Product</Button>
                     </form>
                 </div>
