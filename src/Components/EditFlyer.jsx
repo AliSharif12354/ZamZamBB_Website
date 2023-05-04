@@ -10,6 +10,7 @@ export default function EditFlyer(props) {
 
   const handleEditFlyerClick = () => {
     console.log("Edit Flyer clicked");
+    window.location.href =  `/flyerDetails/${props.fId}`
   }
 
  
