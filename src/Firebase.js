@@ -25,7 +25,8 @@ const files = getStorage(app)
 const db = getFirestore(app)
 
 const Flyers = ref(files, "Images/Flyers/");
-const Other = ref(files, "Images/Other/")
+const Other = ref(files, "Images/Other/");
+
 
 function updateFlyers() { //updating flyers 
   return new Promise((resolve, reject) => {
