@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { Row, Col, Container, Button } from 'react-bootstrap';
+import { db, auth } from '../Firebase';
+import { Link } from 'react-router-dom';
 import EditProduct from '../Components/EditProduct';
 import Navbar_V2 from '../Components/Navbar_V2';
 import Footer from '../Components/Footer'
-import { collection, getDocs } from 'firebase/firestore';
 import '../Styles/EditProduct.css'
-import { db } from '../Firebase';
-import { Row, Col, Container } from 'react-bootstrap';
-import { auth } from '../Firebase';
+
 
 
 export default function EditProductsRoute() {
@@ -48,6 +49,13 @@ export default function EditProductsRoute() {
             <>
                 <Navbar_V2 />
                 <br />
+                <div className="d-flex flex-column justify-content-center align-items-center">
+                    <Link to="/addProduct">
+                        <Button variant="success" className="addButton mx-auto">
+                            ADD NEW PRODUCT
+                        </Button>
+                    </Link>
+                </div>
                 <Container className="my-5">
                     <Row className="gy-4 justify-content-center">
                         {products.map((product) => (

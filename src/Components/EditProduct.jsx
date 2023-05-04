@@ -38,7 +38,7 @@ const EditProduct = props => {
         }
 
         const handleNoInventoryClick = () => {
-            console.log("No Inventory clicked");
+            console.log(props.pId);
         }
 
         const renderImages = () => {

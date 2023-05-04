@@ -23,9 +23,10 @@ export default function AddProduct() {
     const [currentUser, setCurrentUser] = useState(null); //use state currentUser to hold auth user
 
     function addProductToFirestore(images, name, description, price, inStock, isLuggage, isClothing, isBestSeller) {
-        const productsRef = collection(db, "products");
-        const itemsRef = ref(files, "Images/Items");
-        const timestamp = new Date().getTime();
+
+        const productsRef = collection(db, "products"); // get collection from db ref
+        const itemsRef = ref(files, "Images/Items"); // getStorage get Path
+        const timestamp = new Date().getTime(); //timestamp to create unique name for image file each time
 
         // console.log('images array passed in function is below')
         // console.log(images); //debug
@@ -33,11 +34,15 @@ export default function AddProduct() {
 
         // Upload images to Firebase Storage
         const uploadPromises = images.map((image, index) => {
+
             const imageName = `${name}_${timestamp}_${index}`; //index to create a new name for each photo being uploaded
+        
             const imageRef = ref(itemsRef, imageName); //get image storage and create name for product
+        
             return uploadBytes(imageRef, image).then((snapshot) => { //upload image to imageRefrence
                 return getDownloadURL(snapshot.ref); //return downloadurl array to be used in promise function 
             });
+        
         });
 
 

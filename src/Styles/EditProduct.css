@@ -1,3 +1,11 @@
+.addButton {
+  height: 7rem;
+  width: 100%;
+  padding: 10px 10px;
+  padding-right: 10px;
+  font-size: 2rem;
+}
+
 .editproduct-card {
     height: 100%;
     margin-bottom: 20px;
