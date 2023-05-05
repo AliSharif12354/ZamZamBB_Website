@@ -1,12 +1,13 @@
 import React from 'react'
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { db, files } from '../Firebase.js';
 import { collection, doc, setDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { auth } from '../Firebase';
 import Navbar_V2 from './Navbar_V2';
 import Footer from '../Components/Footer';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import '../Styles/AddProduct.css'
 
 export default function AddProduct() {
@@ -20,6 +21,8 @@ export default function AddProduct() {
     const [isLuggage, setIsLuggage] = useState(false);
     const [isClothing, setIsClothing] = useState(false);
     const [isBestSeller, setIsBestSeller] = useState(false);
+    //const [isCompleted, setIsCompleted] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [currentUser, setCurrentUser] = useState(null); //use state currentUser to hold auth user
 
     function addProductToFirestore(images, name, description, price, inStock, isLuggage, isClothing, isBestSeller) {
@@ -36,13 +39,13 @@ export default function AddProduct() {
         const uploadPromises = images.map((image, index) => {
 
             const imageName = `${name}_${timestamp}_${index}`; //index to create a new name for each photo being uploaded
-        
+
             const imageRef = ref(itemsRef, imageName); //get image storage and create name for product
-        
+
             return uploadBytes(imageRef, image).then((snapshot) => { //upload image to imageRefrence
                 return getDownloadURL(snapshot.ref); //return downloadurl array to be used in promise function 
             });
-        
+
         });
 
 
@@ -71,7 +74,7 @@ export default function AddProduct() {
                     setIsClothing(false);
                     setIsBestSeller(false);
                     setImages([]);
-                    setIsCompleted(true);
+                    setShowModal(true);
                     console.log("Product added successfully");
                 })
                 .catch((error) => {
@@ -102,19 +105,15 @@ export default function AddProduct() {
     const handleSubmit = async (event) => {
 
         event.preventDefault();
-        
+
         addProductToFirestore(images, name, description, price, inStock, isLuggage, isClothing, isBestSeller);
 
-        // console.log(images);
-        // console.log(description);
-        // console.log(name);
-        // console.log(price);
-        // console.log("value of inStock: " + inStock);
-        // console.log("value of isLuggage:" + isLuggage);
-        // console.log("value of isClothing: " + isClothing);
-        // console.log("value of isBestSeller: " + isBestSeller);
-
     };
+
+    function handleCloseModal() {
+        setShowModal(false);
+        setIsCompleted(false);
+    }
 
 
 
@@ -211,6 +210,21 @@ export default function AddProduct() {
                         <br />
                         <Button className='success' type='submit'>Add Product</Button>
                     </form>
+                    <Modal show={showModal} onHide={handleCloseModal} centered style={{ color: 'green' }}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Success</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <p>The product has been added successfully!</p>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Link to='/editProducts'>
+                                <Button variant="secondary" onClick={handleCloseModal}>
+                                    Close
+                                </Button>
+                            </Link>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
                 <Footer />
             </>
