@@ -8,6 +8,8 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { auth } from '../Firebase'
 import { updateFlyers, updateOther } from '../Firebase'
+import { db } from '../Firebase'
+import { getDocs, collection } from 'firebase/firestore'
 import { Card, Modal, Button } from "react-bootstrap"
 
 
@@ -23,12 +25,18 @@ function App() {
       try {
         const fURLs = await updateFlyers();
         const oURLS = await updateOther();
-        setFlyerURLs(fURLs);
+        // setFlyerURLs(fURLs);
         setOtherURLs(oURLS);
       } catch (error) {
         console.log(error);
       }
     }
+    const fetchFlyers = async () => {
+      const querySnapshot = await getDocs(collection(db, 'flyers'));
+      setFlyerURLs(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    fetchFlyers();
+    console.log("TEST123", flyerURLS)
     fetchData();
   }, []);
   //Use effect for signed in or not
@@ -65,7 +73,7 @@ function App() {
           {console.log("ALL FLYER URLS AT THIS STATE IN REACT: ", flyerURLS)}
           {
             flyerURLS.length > 0 ? flyerURLS.map((url, i) => (
-                <Flyer exp = "123"logo={url}></Flyer>
+                <Flyer exp = "123"logo={url.imgSrc}></Flyer>
               )
             ) : <p className="green">Loading</p>
           }
