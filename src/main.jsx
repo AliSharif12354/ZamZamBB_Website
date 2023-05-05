@@ -13,7 +13,6 @@ import FlyerDetails from './Routes/FlyerDetails'
 // import Featured from './Routes/Featured'
 // import AboutUs from './Routes/AbousUs'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import './index.css'
 
 const router = createBrowserRouter([
   {path: "/", element: <App/>},
