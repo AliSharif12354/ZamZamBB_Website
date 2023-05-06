@@ -67,6 +67,10 @@ export default function EditProductsRoute() {
                                     name={product.name != null ? product.name : "Product name not found"}
                                     desc={product.description != null ? product.description : "description not found"}
                                     price={product.price != null ? product.price : "Price not found"}
+                                    inStock={product.inStock != null ? product.inStock : false}
+                                    isLuggage={product.isLuggage != null ? product.isLuggage : false}
+                                    isClothing={product.isClothing != null ? product.isClothing : false}
+                                    isBestSeller={product.isBestSeller != null ? product.isBestSeller : false}
                                 />
                             </Col>
                         ))}

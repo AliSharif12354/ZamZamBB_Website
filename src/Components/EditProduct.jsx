@@ -1,5 +1,6 @@
 import { Card, Modal, Button, Carousel } from "react-bootstrap"
 import React, { useState, useEffect } from 'react';
+import EditProductSpecific from "./EditProductSpecific";
 import { auth } from "../Firebase";
 import '../Styles/EditProduct.css'
 
@@ -34,7 +35,21 @@ const EditProduct = props => {
 
         //console.log(props.pId);
         const handleEditProductClick = () => {
+
+
+            <EditProductSpecific
+                pId={product.id}
+                imgs={product.imageSrc.length != 0 ? product.imageSrc : "image not found"}
+                name={product.name != null ? product.name : "Product name not found"}
+                desc={product.description != null ? product.description : "description not found"}
+                price={product.price != null ? product.price : "Price not found"}
+                inStock={product.inStock != null ? product.inStock : false}
+                isLuggage={product.isLuggage != null ? product.isLuggage : false}
+                isClothing={product.isClothing != null ? product.isClothing : false}
+                isBestSeller={product.isBestSeller != null ? product.isBestSeller : false}
+            />
             console.log("Edit Product clicked");
+
         }
 
         const handleNoInventoryClick = () => {
@@ -105,8 +120,6 @@ const EditProduct = props => {
                         <Button variant="secondary" onClick={handleCloseModal} className="mx-auto">Close</Button>
                     </Modal.Footer>
                 </Modal>
-
-
             </>
 
 
