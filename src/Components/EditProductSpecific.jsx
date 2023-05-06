@@ -3,15 +3,15 @@ import React, { useState } from 'react'
 export default function EditProductSpecific(props) {
 
     var out = <></>;
-    const [pId, setPiD] = useState(props.pId ? props.pId : null);
-    const [images, setImages] = useState(props.imgs ? props.imgs : []);
-    const [description, setDescription] = useState(props.desc ? props.desc : '');
-    const [name, setName] = useState(props.name ? props.name : '');
-    const [price, setPrice] = useState(props.price ? props.price : '');
-    const [inStock, setInStock] = useState(props.inStock ? props.inStock : false);
-    const [isLuggage, setIsLuggage] = useState(props.isLuggage ? props.isLuggage : false);
-    const [isClothing, setIsClothing] = useState(props.isClothing ? props.isClothing : false);
-    const [isBestSeller, setIsBestSeller] = useState(props.isBestSeller ? props.isBestSeller : false);
+    const [pId, setPiD] = useState(props.pId || '');
+    const [images, setImages] = useState(props.imgs || []);
+    const [description, setDescription] = useState(props.desc || '');
+    const [name, setName] = useState(props.name || '');
+    const [price, setPrice] = useState(props.price || '');
+    const [inStock, setInStock] = useState(props.inStock || false);
+    const [isLuggage, setIsLuggage] = useState(props.isLuggage || false);
+    const [isClothing, setIsClothing] = useState(props.isClothing || false);
+    const [isBestSeller, setIsBestSeller] = useState(props.isBestSeller || false);
     const [showModal, setShowModal] = useState(false);
     const [currentUser, setCurrentUser] = useState(null); //use state currentUser to hold auth user
 

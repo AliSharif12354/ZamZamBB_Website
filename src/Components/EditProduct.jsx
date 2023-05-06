@@ -37,7 +37,7 @@ const EditProduct = props => {
         const handleEditProductClick = () => {
 
 
-            <EditProductSpecific
+            out = <EditProductSpecific
                 pId={product.id}
                 imgs={product.imageSrc.length != 0 ? product.imageSrc : "image not found"}
                 name={product.name != null ? product.name : "Product name not found"}
