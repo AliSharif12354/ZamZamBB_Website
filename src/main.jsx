@@ -8,6 +8,7 @@ import EditProductsRoute from './Routes/EditProductsRoute'
 import EditFlyerRoute from './Routes/EditFlyerRoute'
 import AddProductRoute from './Routes/AddProductRoute'
 import FlyerDetails from './Routes/FlyerDetails'
+import EditProductSpecific from './Routes/EditProductSpecific'
 
 
 // import Featured from './Routes/Featured'
@@ -22,7 +23,8 @@ const router = createBrowserRouter([
   {path: "/editFlyers", element: <EditFlyerRoute/>},
   {path: "/editProducts", element: <EditProductsRoute/>},
   {path: "/addProduct", element: <AddProductRoute/>},
-  {path: "/flyerDetails/:flyerID", element: <FlyerDetails/>}
+  {path: "/flyerDetails/:flyerID", element: <FlyerDetails/>},
+  {path: "/editProduct/:productID", element: <EditProductSpecific/>}
   // {path: "/Featured", element: <Featured/>},
   // {path: "/AboutUs", element: <AboutUs/>}
 ]);

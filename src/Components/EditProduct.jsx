@@ -1,8 +1,8 @@
 import { Card, Modal, Button, Carousel } from "react-bootstrap"
 import React, { useState, useEffect } from 'react';
-import EditProductSpecific from "./EditProductSpecific";
 import { auth } from "../Firebase";
 import '../Styles/EditProduct.css'
+import { Link } from 'react-router-dom';
 
 const EditProduct = props => {
 
@@ -22,7 +22,7 @@ const EditProduct = props => {
             unsubscribe();
         };
 
-    }, []);
+    }, [out]);
 
 
     if (!currentUser) {
@@ -37,17 +37,6 @@ const EditProduct = props => {
         const handleEditProductClick = () => {
 
 
-            out = <EditProductSpecific
-                pId={product.id}
-                imgs={product.imageSrc.length != 0 ? product.imageSrc : "image not found"}
-                name={product.name != null ? product.name : "Product name not found"}
-                desc={product.description != null ? product.description : "description not found"}
-                price={product.price != null ? product.price : "Price not found"}
-                inStock={product.inStock != null ? product.inStock : false}
-                isLuggage={product.isLuggage != null ? product.isLuggage : false}
-                isClothing={product.isClothing != null ? product.isClothing : false}
-                isBestSeller={product.isBestSeller != null ? product.isBestSeller : false}
-            />
             console.log("Edit Product clicked");
 
         }
@@ -100,7 +89,9 @@ const EditProduct = props => {
                             </p>
                             <p className="text-center card-price"><strong>{props.price != null ? "$" + props.price : "Price not found"}</strong></p>
                         </Card.Text>
-                        <Button variant='danger' className='delete-button' onClick={(e) => { e.stopPropagation(); handleEditProductClick() }}>Edit Product</Button>
+                        <Link to={`/editProduct/${props.pId}`}>
+                            <Button variant='danger' className='delete-button' onClick={(e) => { e.stopPropagation(); handleEditProductClick() }}>Edit Product</Button>
+                        </Link>
                         <Button variant='warning' className='soldout-button' onClick={(e) => { e.stopPropagation(); handleNoInventoryClick() }}>No Inventory</Button>
                     </Card.Body>
                 </Card>
