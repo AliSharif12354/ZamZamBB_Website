@@ -7,7 +7,7 @@ import Product from '../Components/Product'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { auth } from '../Firebase'
-import { updateFlyers, updateOther } from '../Firebase'
+import { updateOther } from '../Firebase'
 import { db } from '../Firebase'
 import { getDocs, collection } from 'firebase/firestore'
 import { Card, Modal, Button } from "react-bootstrap"
@@ -19,26 +19,25 @@ function App() {
   const [authUser, setAuthUser] = useState(null);
   const [flyerURLS, setFlyerURLs] = useState([]);
   const [otherURLS, setOtherURLs] = useState([]);
- 
-  useEffect(() => {
+
+  useEffect(() => { //For fetching flyer and other image from firebase on load
     async function fetchData() {
       try {
-        const fURLs = await updateFlyers();
         const oURLS = await updateOther();
-        // setFlyerURLs(fURLs);
         setOtherURLs(oURLS);
       } catch (error) {
         console.log(error);
       }
     }
-    const fetchFlyers = async () => {
+    async function fetchFlyers () {
       const querySnapshot = await getDocs(collection(db, 'flyers'));
       setFlyerURLs(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      console.log("cmon", flyerURLS)
     };
     fetchFlyers();
-    console.log("TEST123", flyerURLS)
     fetchData();
   }, []);
+
   //Use effect for signed in or not
   useEffect(() => {
 
@@ -56,10 +55,6 @@ function App() {
 
   }, [])
 
-  const populateFlyers = () => {
-    const temp = [];
-  }
-
   return (
     <>
       <Navbar_V2 />
@@ -70,11 +65,10 @@ function App() {
         <h3>First come first serve, don't miss your chance!</h3>
         <br />
         <div>
-          {console.log("ALL FLYER URLS AT THIS STATE IN REACT: ", flyerURLS)}
+
           {
-            flyerURLS.length > 0 ? flyerURLS.map((url, i) => (
-                <Flyer exp = "123"logo={url.imgSrc}></Flyer>
-              )
+            flyerURLS.length > 0 ? flyerURLS.map((url, i) =>
+              !url.archive ? (<Flyer exp="123" logo={url.imgSrc}></Flyer>) : (<span/>)
             ) : <p className="green">Loading</p>
           }
         </div>

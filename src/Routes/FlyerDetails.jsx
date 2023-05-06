@@ -39,8 +39,13 @@ export default function FlyerDetails(props) {
         if (deleteValue === "yes") { //Delete flyer document
             try {
                 await deleteDoc(docRef);
-                console.log("Flyer document successfully deleted!");
+                response = document.getElementById('verify');
+                response.style.opacity = '1';
+                response.innerHTML = "Flyer document successfully deleted!";
             } catch (error) {
+                response = document.getElementById('verify');
+                response.style.opacity = '1';
+                response.innerHTML = `Error deleting flyer document: $error`;
                 console.error("Error deleting flyer document: ", error);
             }
         } else { //Update archive status
@@ -48,9 +53,16 @@ export default function FlyerDetails(props) {
                 await updateDoc(docRef, {
                     archive: (archiveValue === "yes")
                 });
-                console.log("Flyer document successfully updated!");
+                response = document.getElementById('verify');
+                response.style.opacity = '1';
+                response.innerHTML = "Flyer document successfully updated!";
             } catch (error) {
-                console.error("Error updating flyer document: ", error);
+                console.log("before")
+                response = document.getElementById('verify');
+                console.log("After", response)
+                response.style.opacity = '1';
+                response.innerHTML = `Error archiving flyer document: $error`;
+                console.error("Error deleting flyer document: ", error);
             }
         }
     }
@@ -84,6 +96,7 @@ export default function FlyerDetails(props) {
                 </div>
                 <br />
                 <button type="submit">Submit</button>
+                <p id='verify' style={{opacity: "1"}}>Changes made!</p>
             </form>
             <Footer />
         </div>
