@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import { Card, Modal, Button, Carousel } from "react-bootstrap"
+import { Card, Modal, Container, Row, Col, Button, Dropdown, DropdownButton } from "react-bootstrap"
 import { db, auth } from '../Firebase';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import Navbar_V2 from '../Components/Navbar_V2';
 import { Link } from 'react-router-dom';
 import Footer from '../Components/Footer'
 
-export default function EditProductSpecific(props) {
+export default function EditProductSpecific() {
 
     const { productID } = useParams();
     const [product, setProduct] = useState(null);
@@ -36,12 +36,24 @@ export default function EditProductSpecific(props) {
 
                     if (docSnap.exists()) {
                         setProduct(docSnap.data());
+
                     } else {
                         console.log("No such document exists!");
                     }
+
                 };
 
-                fetchProduct();
+                fetchProduct(); //call function
+                // set useState variables
+                setImages(product.imageSrc || []);
+                setDescription(product.description || '');
+                setName(product.name || '');
+                setPrice(product.price || '');
+                setInStock(product.inStock || false);
+                setIsLuggage(product.isLuggage || false);
+                setIsClothing(product.isClothing || false);
+                setIsBestSeller(product.isBestSeller || false);
+
             }
         });
 
@@ -69,8 +81,21 @@ export default function EditProductSpecific(props) {
         console.log(product)
     };
 
-    const handleImageChange = (e) => {
-        // ...
+    const handleImageChange = (event) => {
+
+        if (event.target.files) {
+
+            // Create a copy of the existing images array
+            const tempImages = [...images];
+            // Add the files selected by the user to the end of the array
+            for (let i = 0; i < event.target.files.length; i++) {
+                tempImages.push(event.target.files[i]);
+            }
+            // Set the state of images to the new array
+            setImages(tempImages);
+
+        }
+
     };
 
     function handleCloseModal() {
@@ -89,6 +114,23 @@ export default function EditProductSpecific(props) {
                 <Navbar_V2 />
                 <div className='formContainer'>
                     <form onSubmit={handleSubmit}>
+
+                        <div className="d-flex flex-wrap">
+                            {images.map((imageUrl, index) => (
+                                <Card key={index} className="col-lg-3 mb-4 me-4" style={{ maxWidth: '300px' }}>
+                                    <Card.Img variant="top" src={imageUrl} />
+                                    <Card.Body>
+                                        <Button variant="secondary" onClick={() => handleChangePhotoOrder(index)}>
+                                            Change Photo Order
+                                        </Button>
+                                        <Button variant="danger" onClick={() => handleDeletePhoto(index)}>
+                                            Delete Photo
+                                        </Button>
+                                    </Card.Body>
+                                </Card>
+                            ))}
+                        </div>
+
                         <label className='formItem' htmlFor='image'>Image:</label>
                         <input type='file' id='image' onChange={handleImageChange} required multiple />
                         <br />
@@ -156,14 +198,14 @@ export default function EditProductSpecific(props) {
                         <label htmlFor='isBestSellerFalse'>No</label>
                         <br />
                         <br />
-                        <Button className='success' type='submit'>Add Product</Button>
+                        <Button className='success' type='submit'>Edit Product</Button>
                     </form>
                     <Modal show={showModal} onHide={handleCloseModal} centered className='addmodal'>
                         <Modal.Header closeButton>
                             <Modal.Title>Success</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <p>The product has been added successfully!</p>
+                            <p>The product has been edited successfully!</p>
                         </Modal.Body>
                         <Modal.Footer>
                             <Link to='/editProducts'>
