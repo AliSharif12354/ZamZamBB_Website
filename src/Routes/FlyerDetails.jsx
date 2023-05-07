@@ -1,7 +1,7 @@
-import React from 'react'
+import { Button } from "react-bootstrap"
 import { db } from '../Firebase';
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import Flyer from '../Components/Flyer';
 import Navbar_V2 from '../Components/Navbar_V2';
@@ -10,10 +10,11 @@ import "../Styles/FlyerDetails.css"
 
 export default function FlyerDetails(props) {
 
-    const { flyerID } = useParams();
+    const { flyerID } = useParams(); //Get flyer ID from URL
     const [flyerData, setFlyerData] = useState(null);
+    const response = useRef(null) //Get the success message pointer, purely for outputting to user not for functionality
 
-    useEffect(() => { //Get flyer document
+    useEffect(() => { //Get flyer document from firestore
         const fetchFlyerDetails = async () => {
             const docRef = doc(db, "flyers", flyerID);
             const docSnap = await getDoc(docRef);
@@ -30,7 +31,7 @@ export default function FlyerDetails(props) {
         return <div>Loading...</div>;
     }
 
-    async function handleFormSubmit(e) {
+    async function handleFormSubmit(e) { //Functionality for submitting changes
         e.preventDefault();
         const deleteValue = e.target.delete.value;
         const archiveValue = e.target.archive.value;
@@ -39,12 +40,10 @@ export default function FlyerDetails(props) {
         if (deleteValue === "yes") { //Delete flyer document
             try {
                 await deleteDoc(docRef);
-                response = document.getElementById('verify');
-                response.style.opacity = '1';
+                response.current.style.opacity = '1';
                 response.innerHTML = "Flyer document successfully deleted!";
             } catch (error) {
-                response = document.getElementById('verify');
-                response.style.opacity = '1';
+                response.current.style.opacity = '1';
                 response.innerHTML = `Error deleting flyer document: $error`;
                 console.error("Error deleting flyer document: ", error);
             }
@@ -53,18 +52,17 @@ export default function FlyerDetails(props) {
                 await updateDoc(docRef, {
                     archive: (archiveValue === "yes")
                 });
-                response = document.getElementById('verify');
-                response.style.opacity = '1';
+                response.current.style.opacity = '1';
                 response.innerHTML = "Flyer document successfully updated!";
             } catch (error) {
                 console.log("before")
-                response = document.getElementById('verify');
                 console.log("After", response)
-                response.style.opacity = '1';
+                response.current.style.opacity = '1';
                 response.innerHTML = `Error archiving flyer document: $error`;
                 console.error("Error deleting flyer document: ", error);
             }
         }
+        location.reload()
     }
     return (
         <div className='content'>
@@ -95,8 +93,8 @@ export default function FlyerDetails(props) {
                     </label>
                 </div>
                 <br />
-                <button type="submit">Submit</button>
-                <p id='verify' style={{opacity: "1"}}>Changes made!</p>
+                <Button type="submit">Submit</Button>
+                <p ref={response} style={{opacity: "0"}}>Changes made!</p>
             </form>
             <Footer />
         </div>
