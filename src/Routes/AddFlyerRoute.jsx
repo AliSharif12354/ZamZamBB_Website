@@ -41,11 +41,12 @@ export default function AddFlyerRoute() {
 
         uploadPromises.then((downloadURLs) => { //uploadPromises is array holding all download urls
 
-            //console.log(downloadURLs);
+            console.log("URLS IN PROMISE", downloadURLs);
 
             // Add product document to Firestore with image URLs
+            
             setDoc(doc(flyersRef), {
-                imageSrc: downloadURLs,
+                imgSrc: downloadURLs,
                 archive: archive
             })
                 .then(() => {
@@ -115,12 +116,12 @@ export default function AddFlyerRoute() {
                         <br />
 
                         <label className='formItem'><u>Archived?:</u></label>
-                        <input type='radio' id='archivedTrue' name='archived' value={false} onChange={(e) => setArchive(e.target.value)} required />
+                        <input type='radio' id='archivedTrue' name='archived' value={true} onChange={(e) => setArchive(e.target.value)} required />
                         {'   '}
                         <label htmlFor='inStockTrue'>Yes</label>
                         <br />
                         {'   '}
-                        <input type='radio' id='archivedFalse' name='archived' value={true} onChange={(e) => setArchive(e.target.value)} />
+                        <input type='radio' id='archivedFalse' name='archived' value={false} onChange={(e) => setArchive(e.target.value)} />
                         {'   '}
                         <label htmlFor='inStockFalse'>No </label>
                         <br />
