@@ -5,7 +5,8 @@ import Footer from '../Components/Footer'
 import { collection, getDocs } from 'firebase/firestore';
 import '../Styles/EditProduct.css'
 import { db } from '../Firebase';
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { auth } from '../Firebase';
 
 export default function EditFlyerRoute() {
@@ -48,6 +49,13 @@ export default function EditFlyerRoute() {
       <>
         <Navbar_V2 />
         <br />
+        <div className="d-flex flex-column justify-content-center align-items-center">
+          <Link to="/addFlyer">
+            <Button variant="success" className="addButton mx-auto">
+              ADD NEW FLYER
+            </Button>
+          </Link>
+        </div>
         <Container className="my-5">
           <Row className="gy-4 justify-content-center">
             {flyers.length > 0 ? flyers.map((flyer) => (

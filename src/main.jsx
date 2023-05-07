@@ -7,6 +7,7 @@ import AdminRoute from './Routes/AdminRoute'
 import EditProductsRoute from './Routes/EditProductsRoute'
 import EditFlyerRoute from './Routes/EditFlyerRoute'
 import AddProductRoute from './Routes/AddProductRoute'
+import AddFlyerRoute from './Routes/AddFlyerRoute'
 import FlyerDetails from './Routes/FlyerDetails'
 import EditProductSpecific from './Routes/EditProductSpecific'
 
@@ -24,7 +25,8 @@ const router = createBrowserRouter([
   {path: "/editProducts", element: <EditProductsRoute/>},
   {path: "/addProduct", element: <AddProductRoute/>},
   {path: "/flyerDetails/:flyerID", element: <FlyerDetails/>},
-  {path: "/editProduct/:productID", element: <EditProductSpecific/>}
+  {path: "/editProduct/:productID", element: <EditProductSpecific/>},
+  {path: "/addFlyer", element: <AddFlyerRoute/>}
   // {path: "/Featured", element: <Featured/>},
   // {path: "/AboutUs", element: <AboutUs/>}
 ]);
