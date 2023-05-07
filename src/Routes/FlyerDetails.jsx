@@ -3,6 +3,7 @@ import { db } from '../Firebase';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { auth } from "../Firebase";
 import Flyer from '../Components/Flyer';
 import Navbar_V2 from '../Components/Navbar_V2';
 import Footer from '../Components/Footer'
@@ -14,8 +15,28 @@ export default function FlyerDetails(props) {
     const [flyerData, setFlyerData] = useState(null);
     const response = useRef(null) //Get the success message pointer, purely for outputting to user not for functionality
 
-    useEffect(() => { //Get flyer document from firestore
-        const fetchFlyerDetails = async () => {
+    const [currentUser, setCurrentUser] = useState(null); //use state currentUser to hold auth user
+    let out = <></>;
+
+    // useEffect(() => { //Get flyer document from firestore
+    //     const fetchFlyerDetails = async () => {
+    //         const docRef = doc(db, "flyers", flyerID);
+    //         const docSnap = await getDoc(docRef);
+    //         if (docSnap.exists()) {
+    //             setFlyerData(docSnap.data());
+    //         } else {
+    //             console.log("No such document exists!");
+    //         }
+    //     };
+    //     fetchFlyerDetails();
+    // }, [db, flyerID]);
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(user => { //checking auth state always from firebase
+            setCurrentUser(user);
+        });
+
+        const fetchFlyerDetails = async () => { //Get flyer document from firestore
             const docRef = doc(db, "flyers", flyerID);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
@@ -25,9 +46,11 @@ export default function FlyerDetails(props) {
             }
         };
         fetchFlyerDetails();
+        unsubscribe();
     }, [db, flyerID]);
 
     if (!flyerData) { //Means we are searching for flyer document details as flyer document is empty at the moment
+        console.log(flyerData)
         return <div>Loading...</div>;
     }
 
@@ -64,39 +87,54 @@ export default function FlyerDetails(props) {
         }
         location.reload()
     }
-    return (
-        <div className='content'>
 
-            <Navbar_V2 />
-            <h1>Edit Flyer</h1>
-            {console.log(flyerData)}
-            <Flyer logo={flyerData.imgSrc} />
-            <form onSubmit={handleFormSubmit}>
-                <br />
-                <div>
-                    <label>
-                        <p className='inputFlyer'>Delete Flyer? </p>
-                        <select style={{ minHeight: "25px" }} className='inputFlyer' name="Delete" id="delete">
-                            <option value="no">No</option>
-                            <option value="yes">Yes</option>
-                        </select>
-                    </label>
+    if (!currentUser) {
+
+        out = <>Route Not Found</>
+
+    }
+
+    if (currentUser) {
+        out =
+            <>
+                <div className='content'>
+
+                    <Navbar_V2 />
+                    <h1>Edit Flyer</h1>
+                    {console.log(flyerData)}
+                    <Flyer logo={flyerData.imgSrc} />
+                    <form onSubmit={handleFormSubmit}>
+                        <br />
+                        <div>
+                            <label>
+                                <p className='inputFlyer'>Delete Flyer? </p>
+                                <select style={{ minHeight: "25px" }} className='inputFlyer' name="delete" id="delete">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </label>
+                        </div>
+                        <br />
+                        <div>
+                            <label>
+                                <p className='inputFlyer'>Archive status: (Invisible or not)</p>
+                                <select style={{ minHeight: "25px" }} name="Archive" id="archive">s
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </label>
+                        </div>
+                        <br />
+                        <Button type="submit">Submit</Button>
+                        <p ref={response} style={{ opacity: "0" }}>Changes made!</p>
+                    </form>
+                    <Footer />
+
                 </div>
-                <br />
-                <div>
-                    <label>
-                        <p className='inputFlyer'>Archive status: (Invisible or not)</p>
-                        <select style={{ minHeight: "25px" }} name="Archive" id="archive">s
-                            <option value="no">No</option>
-                            <option value="yes">Yes</option>
-                        </select>
-                    </label>
-                </div>
-                <br />
-                <Button type="submit">Submit</Button>
-                <p ref={response} style={{opacity: "0"}}>Changes made!</p>
-            </form>
-            <Footer />
-        </div>
+            </>
+
+    }
+    return (
+        out
     );
 }
