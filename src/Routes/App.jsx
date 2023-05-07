@@ -3,14 +3,14 @@ import Navbar_V2 from '../Components/Navbar_V2.jsx'
 import Flyer from '../Components/Flyer.jsx'
 import Footer from '../Components/Footer.jsx'
 import Information from '../Components/Information'
-import Product from '../Components/Product'
+// import Product from '../Components/Product'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { auth } from '../Firebase'
 import { updateOther } from '../Firebase'
 import { db } from '../Firebase'
 import { getDocs, collection } from 'firebase/firestore'
-import { Card, Modal, Button } from "react-bootstrap"
+// import { Card, Modal, Button } from "react-bootstrap"
 
 
 function App() {
