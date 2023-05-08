@@ -69,7 +69,7 @@ export default function EditProductSpecific() {
 
     const handleImageChange = (event) => {
 
-        if (event.target.files) {
+        if (event.target.files && event.target.files.length > 0) {
 
             // Create a copy of the existing images array
             const tempImages = [...images];
@@ -85,7 +85,7 @@ export default function EditProductSpecific() {
     };
 
     function moveUp(index) {
-        if (index === 0) {
+        if (index === 0) { // check if first in array
             console.log("this is images: " + images)
             return;
         }
@@ -98,7 +98,7 @@ export default function EditProductSpecific() {
     }
 
     function moveDown(index) {
-        if (index === images.length - 1) {
+        if (index === images.length - 1) { //check if last in array
             console.log("this is images: " + images)
             return;
         }
@@ -158,7 +158,7 @@ export default function EditProductSpecific() {
                         </div>
 
                         <label className='formItem' htmlFor='image'>Image:</label>
-                        <input type='file' id='image' onChange={handleImageChange} required multiple />
+                        <input type='file' id='image' onChange={handleImageChange} multiple />
                         <br />
                         <br />
 
