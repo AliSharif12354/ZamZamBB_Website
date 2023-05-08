@@ -9,7 +9,7 @@ import Footer from '../Components/Footer'
 
 export default function EditProductSpecific() {
 
-    const { productID } = useParams();
+    const { productID } = useParams(); //get product id from params
     const [product, setProduct] = useState(null);
     const [pId, setPiD] = useState("");
     const [images, setImages] = useState([]);
@@ -35,46 +35,32 @@ export default function EditProductSpecific() {
                     const docSnap = await getDoc(docRef);
 
                     if (docSnap.exists()) {
-                        setProduct(docSnap.data());
-
+                        const product = docSnap.data();
+                        setProduct(product);
+                        setImages(product.imageSrc || []);
+                        setDescription(product.description || '');
+                        setName(product.name || '');
+                        setPrice(product.price || '');
+                        setInStock(product.inStock || false);
+                        setIsLuggage(product.isLuggage || false);
+                        setIsClothing(product.isClothing || false);
+                        setIsBestSeller(product.isBestSeller || false);
                     } else {
                         console.log("No such document exists!");
                     }
-
                 };
 
-                fetchProduct(); //call function
-                // set useState variables
-                setImages(product.imageSrc || []);
-                setDescription(product.description || '');
-                setName(product.name || '');
-                setPrice(product.price || '');
-                setInStock(product.inStock || false);
-                setIsLuggage(product.isLuggage || false);
-                setIsClothing(product.isClothing || false);
-                setIsBestSeller(product.isBestSeller || false);
-
+                fetchProduct();
+            } else {
+                setProduct(null);
             }
         });
 
         return () => {
             unsubscribe();
         };
-    }, [productID]);
 
-    useEffect(() => {
-        if (!currentUser) {
-            setProduct(null);
-        }
-    }, [currentUser]);
-
-    if (!currentUser) {
-        return <div>Route Not Found</div>;
-    }
-
-    if (!product) {
-        return <div>Loading...</div>;
-    }
+    }, [productID, setCurrentUser]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -98,11 +84,45 @@ export default function EditProductSpecific() {
 
     };
 
+    function moveUp(index) {
+        if (index === 0) {
+            console.log("this is images: " + images)
+            return;
+        }
+        const temp = images[index - 1];
+        const updatedImages = [...images];
+        updatedImages.splice(index - 1, 2, images[index], temp);
+        setImages(updatedImages);
+        console.log("this is images: " + images)
+
+    }
+
+    function moveDown(index) {
+        if (index === images.length - 1) {
+            console.log("this is images: " + images)
+            return;
+        }
+        const temp = images[index + 1];
+        const updatedImages = [...images];
+        updatedImages.splice(index, 2, temp, images[index]);
+        setImages(updatedImages);
+        console.log("this is images: " + images)
+
+    }
+
+
     function handleCloseModal() {
         setShowModal(false);
         setIsCompleted(false);
     }
 
+    if (!currentUser) {
+        return <div>Route Not Found</div>;
+    }
+
+    if (!product) {
+        return <div>Loading...</div>;
+    }
 
     if (currentUser) {
 
@@ -120,12 +140,18 @@ export default function EditProductSpecific() {
                                 <Card key={index} className="col-lg-3 mb-4 me-4" style={{ maxWidth: '300px' }}>
                                     <Card.Img variant="top" src={imageUrl} />
                                     <Card.Body>
-                                        <Button variant="secondary" onClick={() => handleChangePhotoOrder(index)}>
-                                            Change Photo Order
+                                        <Button variant="secondary" onClick={() => moveUp(index)}>
+                                            Move Up
                                         </Button>
+                                        <br />
+                                        <Button variant="secondary" onClick={() => moveDown(index)}>
+                                            Move Down
+                                        </Button>
+                                        <br />
                                         <Button variant="danger" onClick={() => handleDeletePhoto(index)}>
                                             Delete Photo
                                         </Button>
+                                        <br />
                                     </Card.Body>
                                 </Card>
                             ))}
