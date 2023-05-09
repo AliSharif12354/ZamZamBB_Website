@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import { Card, Modal, Container, Row, Col, Button, Dropdown, DropdownButton } from "react-bootstrap"
+import { Card, Modal, Button} from "react-bootstrap"
 import { db, auth, files } from '../Firebase';
 import { doc, getDoc, updateDoc, collection, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
@@ -119,6 +119,7 @@ export default function EditProductSpecific() {
                     setImages([]);
                     setShowModal(true);
                     console.log("Product updated successfully");
+                    
                 })
                 .catch((error) => {
                     console.error("Error updating product: ", error);
@@ -183,9 +184,9 @@ export default function EditProductSpecific() {
 
         console.log(imageRef);
 
-
         deleteObject(imageRef)
             .then(() => {
+
                 const updatedImages = [...images];
                 updatedImages.splice(index, 1);
                 setImages(updatedImages); //create new updated images array
@@ -196,11 +197,13 @@ export default function EditProductSpecific() {
                 })
                 handleClosePhotoModal();
                 console.log("File deleted successfully");
+
             })
             .catch((error) => {
-                console.log("Error deleting file:", error);
-            });
 
+                console.log("Error deleting file:", error);
+            
+            });
 
     }
 
