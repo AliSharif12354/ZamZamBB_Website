@@ -119,7 +119,7 @@ export default function EditProductSpecific() {
                     setImages([]);
                     setShowModal(true);
                     console.log("Product updated successfully");
-                    
+
                 })
                 .catch((error) => {
                     console.error("Error updating product: ", error);
@@ -195,7 +195,6 @@ export default function EditProductSpecific() {
                 updateDoc(productRef, { //update doc in firebase
                 imageSrc: updatedImages,
                 })
-                handleClosePhotoModal();
                 console.log("File deleted successfully");
 
             })
