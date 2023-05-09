@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Card, Modal, Container, Row, Col, Button, Dropdown, DropdownButton } from "react-bootstrap"
 import { db, auth, files } from '../Firebase';
 import { doc, getDoc, updateDoc, collection, deleteDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import Navbar_V2 from '../Components/Navbar_V2';
 import { Link } from 'react-router-dom';
 import Footer from '../Components/Footer'
@@ -22,6 +22,8 @@ export default function EditProductSpecific() {
     const [isClothing, setIsClothing] = useState(false);
     const [isBestSeller, setIsBestSeller] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    //const [showDeletePhotoModal, setShowDeletePhotoModal] = useState(false);
+    //const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
     var out = <></>;
 
@@ -50,7 +52,6 @@ export default function EditProductSpecific() {
                         console.log("No such document exists!");
                     }
                 };
-
                 fetchProduct();
             } else {
                 setProduct(null);
@@ -75,10 +76,6 @@ export default function EditProductSpecific() {
         const productsRef = collection(db, "products"); // get collection from db ref
         const itemsRef = ref(files, "Images/Items"); // getStorage get Path
         const timestamp = new Date().getTime(); //timestamp to create unique name for image file each time
-
-        // console.log('images array passed in function is below')
-        // console.log(images); //debug
-        // console.log('images array passed in function is below')
 
         // Upload images to Firebase Storage
         const uploadPromises = newImages.map((image, index) => {
@@ -179,6 +176,33 @@ export default function EditProductSpecific() {
 
     }
 
+    function handleDeletePhoto(index) {
+
+        const url = images[index];
+        const imageRef = ref(files, url);
+
+        console.log(imageRef);
+
+
+        deleteObject(imageRef)
+            .then(() => {
+                const updatedImages = [...images];
+                updatedImages.splice(index, 1);
+                setImages(updatedImages); //create new updated images array
+                const productsRef = collection(db, "products"); 
+                const productRef = doc(productsRef, productID);
+                updateDoc(productRef, { //update doc in firebase
+                imageSrc: updatedImages,
+                })
+                handleClosePhotoModal();
+                console.log("File deleted successfully");
+            })
+            .catch((error) => {
+                console.log("Error deleting file:", error);
+            });
+
+
+    }
 
     function handleCloseModal() {
 
@@ -204,31 +228,23 @@ export default function EditProductSpecific() {
                 <Navbar_V2 />
                 <div className='formContainer'>
                     <form onSubmit={handleSubmit}>
-
-                        <div className="d-flex flex-wrap">
+                        <div className="d-flex flex-wrap justify-content-center align-items-center flex-wrap" style={{ paddingLeft: "22px" }}>
                             {images.map((imageUrl, index) => (
-                                <Card key={index} className="col-lg-3 mb-4 me-4" style={{ maxWidth: '300px' }}>
+                                <Card key={index} bg="dark" className="col-lg-3 mb-4 me-4" style={{ maxWidth: '50%' }}>
                                     <Card.Img variant="top" src={imageUrl} />
                                     <Card.Body>
-                                        <Button variant="secondary" onClick={() => moveUp(index)}>
-                                            Move Up
-                                        </Button>
+                                        <Button variant="secondary" onClick={() => moveUp(index)}>Move Up</Button>
                                         <br />
                                         <br />
-                                        <Button variant="secondary" onClick={() => moveDown(index)}>
-                                            Move Down
-                                        </Button>
+                                        <Button variant="secondary" onClick={() => moveDown(index)}>Move Down</Button>
                                         <br />
                                         <br />
-                                        <Button variant="danger" onClick={() => handleDeletePhoto(index)}>
-                                            Delete Photo
-                                        </Button>
+                                        <Button variant="danger" onClick={() => handleDeletePhoto(index)}>Delete Photo</Button>
                                         <br />
                                     </Card.Body>
                                 </Card>
                             ))}
                         </div>
-
                         <label className='formItem' htmlFor='image'>Image:</label>
                         <input type='file' id='image' onChange={handleImageChange} multiple />
                         <br />
@@ -298,9 +314,9 @@ export default function EditProductSpecific() {
                         <br />
                         <Button variant='success' type='submit'>Edit Product</Button>
                         <br />
-                        <br />       
-                        <Button variant='danger' type='submit'>Delete Product</Button>
-                    </form>
+                        <br />
+                    </form >
+                    <Button variant='danger' type='submit'>Delete Product</Button>
                     <Modal show={showModal} onHide={handleCloseModal} centered className='addmodal'>
                         <Modal.Header closeButton>
                             <Modal.Title>Success</Modal.Title>
@@ -316,7 +332,7 @@ export default function EditProductSpecific() {
                             </Link>
                         </Modal.Footer>
                     </Modal>
-                </div>
+                </div >
                 <Footer />
             </>
 
