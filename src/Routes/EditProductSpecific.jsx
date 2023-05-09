@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { Card, Modal, Container, Row, Col, Button, Dropdown, DropdownButton } from "react-bootstrap"
 import { db, auth, files } from '../Firebase';
@@ -24,8 +24,6 @@ export default function EditProductSpecific() {
     const [showModal, setShowModal] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
     var out = <></>;
-
-    let response = useRef(null)
 
 
     useEffect(() => {
@@ -188,24 +186,6 @@ export default function EditProductSpecific() {
 
     }
 
-    async function handleDelete(e) {
-        e.preventDefault();
-        const docRef = doc(db, "products", productID);
-        try {
-            await deleteDoc(docRef);
-            response.current.style.opacity = '1';
-            response.innerHTML = "Flyer document successfully deleted!";
-        } catch (error) {
-            response.current.style.opacity = '1';
-            response.innerHTML = `Error deleting flyer document: $error`;
-            console.error("Error deleting flyer document: ", error);
-        }
-        //Update archive status
-
-
-        window.location.href = "/editProducts"
-    }
-
     if (!currentUser) {
         return <div>Route Not Found</div>;
     }
@@ -316,9 +296,10 @@ export default function EditProductSpecific() {
                         <label htmlFor='isBestSellerFalse'>No</label>
                         <br />
                         <br />
-                        <Button style={{marginRight: '5px'}} className='success' type='submit'>Edit Product</Button>
-                        <Button className='delete' onClick={handleDelete}>DELETE PRODUCT</Button>
-                        <p ref={response} style={{ opacity: "0" }}>Changes made!</p>
+                        <Button variant='success' type='submit'>Edit Product</Button>
+                        <br />
+                        <br />       
+                        <Button variant='danger' type='submit'>Delete Product</Button>
                     </form>
                     <Modal show={showModal} onHide={handleCloseModal} centered className='addmodal'>
                         <Modal.Header closeButton>
