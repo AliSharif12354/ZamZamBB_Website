@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { Card, Modal, Container, Row, Col, Button, Dropdown, DropdownButton } from "react-bootstrap"
-import { db, auth } from '../Firebase';
-import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { db, auth, files } from '../Firebase';
+import { doc, getDoc, updateDoc, collection, deleteDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Navbar_V2 from '../Components/Navbar_V2';
 import { Link } from 'react-router-dom';
 import Footer from '../Components/Footer'
@@ -11,8 +12,8 @@ export default function EditProductSpecific() {
 
     const { productID } = useParams(); //get product id from params
     const [product, setProduct] = useState(null);
-    const [pId, setPiD] = useState("");
     const [images, setImages] = useState([]);
+    const [newImages, setNewImages] = useState([]);
     const [description, setDescription] = useState("");
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
@@ -63,28 +64,95 @@ export default function EditProductSpecific() {
     }, [productID, setCurrentUser]);
 
     const handleSubmit = (e) => {
+
         e.preventDefault();
-        console.log(product)
+        editProductInFirestore(productID, images, newImages, name, description, price, inStock, isLuggage, isClothing, isBestSeller);
+
     };
+
+    function editProductInFirestore(productID, images, newImages, name, description, price, inStock, isLuggage, isClothing, isBestSeller) {
+
+        const productsRef = collection(db, "products"); // get collection from db ref
+        const itemsRef = ref(files, "Images/Items"); // getStorage get Path
+        const timestamp = new Date().getTime(); //timestamp to create unique name for image file each time
+
+        // console.log('images array passed in function is below')
+        // console.log(images); //debug
+        // console.log('images array passed in function is below')
+
+        // Upload images to Firebase Storage
+        const uploadPromises = newImages.map((image, index) => {
+
+            const imageName = `${name}_${timestamp}_${index}`; //index to create a new name for each photo being uploaded
+            const imageRef = ref(itemsRef, imageName); //get image storage and create name for product
+
+            return uploadBytes(imageRef, image).then((snapshot) => { //upload image to imageRefrence
+                return getDownloadURL(snapshot.ref); //return downloadurl array to be used in promise function 
+            });
+
+        });
+
+        Promise.all(uploadPromises).then((downloadURLs) => { //uploadPromises is array holding all download urls
+
+            const updatedImages = [...images];
+            if (downloadURLs && downloadURLs.length > 0) {
+                updatedImages.push(...downloadURLs);
+            }
+            // Update product document in Firestore with new values and image URLs
+            const productRef = doc(productsRef, productID);
+            updateDoc(productRef, {
+                imageSrc: updatedImages,
+                name: name,
+                description: description,
+                price: price,
+                inStock: inStock,
+                isLuggage: isLuggage,
+                isClothing: isClothing,
+                isBestSeller: isBestSeller,
+            })
+                .then(() => {
+                    // Reset fields if function succeeded
+                    setName('');
+                    setDescription('');
+                    setPrice('');
+                    setInStock(true);
+                    setIsLuggage(false);
+                    setIsClothing(false);
+                    setIsBestSeller(false);
+                    setImages([]);
+                    setShowModal(true);
+                    console.log("Product updated successfully");
+                })
+                .catch((error) => {
+                    console.error("Error updating product: ", error);
+                });
+
+        }).catch((error) => {
+            console.error("Error uploading images: ", error);
+        });
+
+    }
+
 
     const handleImageChange = (event) => {
 
         if (event.target.files && event.target.files.length > 0) {
 
             // Create a copy of the existing images array
-            const tempImages = [...images];
+            const tempImages = [];
             // Add the files selected by the user to the end of the array
             for (let i = 0; i < event.target.files.length; i++) {
                 tempImages.push(event.target.files[i]);
             }
             // Set the state of images to the new array
-            setImages(tempImages);
+            setNewImages(tempImages);
 
         }
 
     };
 
     function moveUp(index) {
+
         if (index === 0) { // check if first in array
             console.log("this is images: " + images)
             return;
@@ -98,6 +166,7 @@ export default function EditProductSpecific() {
     }
 
     function moveDown(index) {
+
         if (index === images.length - 1) { //check if last in array
             console.log("this is images: " + images)
             return;
@@ -112,8 +181,9 @@ export default function EditProductSpecific() {
 
 
     function handleCloseModal() {
+
         setShowModal(false);
-        setIsCompleted(false);
+
     }
 
     if (!currentUser) {
@@ -126,8 +196,8 @@ export default function EditProductSpecific() {
 
     if (currentUser) {
 
-        console.log(product)
-        console.log(productID)
+        //console.log(product)
+        //console.log(productID)
 
         out =
             <>
@@ -144,9 +214,11 @@ export default function EditProductSpecific() {
                                             Move Up
                                         </Button>
                                         <br />
+                                        <br />
                                         <Button variant="secondary" onClick={() => moveDown(index)}>
                                             Move Down
                                         </Button>
+                                        <br />
                                         <br />
                                         <Button variant="danger" onClick={() => handleDeletePhoto(index)}>
                                             Delete Photo
@@ -224,7 +296,10 @@ export default function EditProductSpecific() {
                         <label htmlFor='isBestSellerFalse'>No</label>
                         <br />
                         <br />
-                        <Button className='success' type='submit'>Edit Product</Button>
+                        <Button variant='success' type='submit'>Edit Product</Button>
+                        <br />
+                        <br />       
+                        <Button variant='danger' type='submit'>Delete Product</Button>
                     </form>
                     <Modal show={showModal} onHide={handleCloseModal} centered className='addmodal'>
                         <Modal.Header closeButton>

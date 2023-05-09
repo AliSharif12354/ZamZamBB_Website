@@ -112,7 +112,6 @@ export default function AddProduct() {
 
     function handleCloseModal() {
         setShowModal(false);
-        setIsCompleted(false);
     }
 
 

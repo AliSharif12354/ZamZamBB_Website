@@ -35,9 +35,6 @@ const Product = props => {
     }
   }
 
-
-
-  out =
   out =
   <>
     <Card bg="dark" text="white" className="product-card" style={{ cursor: "pointer" }}>
