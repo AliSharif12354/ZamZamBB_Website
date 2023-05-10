@@ -172,7 +172,7 @@ export default function AddProduct() {
                         <br />
                         <br />
 
-                        <label className='formItem'>Is Product A&nbsp;<u>Luggage?</u> :</label>
+                        <label className='formItem'>Is Product A&nbsp;<u>Luggage?:</u></label>
                         <input type='radio' id='isLuggageTrue' name='isLuggage' value={true} onChange={(e) => setIsLuggage(e.target.value)} required />
                         {'   '}
                         <label htmlFor='isLuggageTrue'>Yes</label>
