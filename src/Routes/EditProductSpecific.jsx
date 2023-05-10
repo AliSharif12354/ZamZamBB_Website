@@ -300,7 +300,7 @@ export default function EditProductSpecific() {
                         </div>
 
                         <div className='formItem'>
-                            <label>Is Product A&nbsp;<u>Luggage?</u></label>
+                            <label>Is Product A&nbsp;<u>Luggage?:</u></label>
                             <div className='radioButtons'>
                                 <input type='radio' id='isLuggageTrue' name='isLuggage' value={true} onChange={(e) => setIsLuggage(e.target.value)} required />
                                 <label htmlFor='isLuggageTrue'>Yes</label>
