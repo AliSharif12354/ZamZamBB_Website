@@ -335,8 +335,8 @@ export default function EditProductSpecific() {
                         <label htmlFor='isBestSellerFalse'>No</label>
                         <br />
                         <br />
-                        <Button style={{marginRight: '5px'}} className='success' type='submit'>Edit Product</Button>
-                        <Button className='delete' onClick={handleDelete}>DELETE PRODUCT</Button>
+                        <Button style={{marginRight: '5px'}} variant='success' type='submit'>Edit Product</Button>
+                        <Button className='delete' variant='danger' onClick={handleDelete}>DELETE PRODUCT</Button>
                     </form >
                     <p ref={response} style={{ opacity: "0" }}>Changes made!</p>
                     <Modal show={showModal} onHide={handleCloseModal} centered className='addmodal'>
