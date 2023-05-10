@@ -254,7 +254,7 @@ export default function EditProductSpecific() {
                     <form onSubmit={handleSubmit}>
                         <div className="d-flex flex-wrap justify-content-center align-items-center flex-wrap" style={{ paddingLeft: "22px" }}>
                             {images.map((imageUrl, index) => (
-                                <Card key={index} bg="dark" className="col-lg-3 mb-4 me-4" style={{ maxWidth: '50%' }}>
+                                <Card key={index} bg="dark" className="col-lg-3 mb-4 me-4" style={{ maxWidth: '50%', minWidth:"300px" }}>
                                     <Card.Img variant="top" src={imageUrl} />
                                     <Card.Body>
                                         <Button variant="secondary" onClick={() => moveUp(index)}>Move Up</Button>
