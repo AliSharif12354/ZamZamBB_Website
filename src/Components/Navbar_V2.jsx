@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import { SocialIcon } from 'react-social-icons';
 import '../Styles/Navbar_V2.css'
@@ -18,11 +17,11 @@ function Navbar_V2() {
   const handleSignOut = (e) => {
     e.preventDefault();
     if (auth.currentUser) {
-      console.log(auth.currentUser)
+      console.log("Hey there, ", auth.currentUser)
     }
-    else {
-      console.log("No one is signed in right now")
-    }
+    // else {
+    //   console.log("No one is signed in right now")
+    // }
     auth.signOut()
       .then(() => {
         console.log("Signed out!");
@@ -50,7 +49,7 @@ function Navbar_V2() {
         setAuthUser(user)
       }
       else {
-        console.log("There currently is no one signed in right now.")
+        //console.log("There currently is no one signed in right now.")
         setAuthUser(null)
       }
     })
