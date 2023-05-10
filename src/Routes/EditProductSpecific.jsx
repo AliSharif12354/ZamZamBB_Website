@@ -251,6 +251,9 @@ export default function EditProductSpecific() {
             <>
                 <Navbar_V2 />
                 <div className='formContainer'>
+                <h1><u>Edit Product</u></h1>
+                <br />
+                <br />
                     <form onSubmit={handleSubmit}>
                         <div className="d-flex flex-wrap justify-content-center align-items-center flex-wrap" style={{ paddingLeft: "22px" }}>
                             {images.map((imageUrl, index) => (

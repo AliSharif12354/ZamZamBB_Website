@@ -139,6 +139,9 @@ export default function AddProduct() {
             <>
                 <Navbar_V2 />
                 <div className='formContainer'>
+                <h1><u>Add Product</u></h1>
+                <br />
+                <br />
                     <form onSubmit={handleSubmit}>
                         <label className='formItem' htmlFor='image'>Image:</label>
                         <input type='file' id='image' onChange={handleImageChange} required multiple />
