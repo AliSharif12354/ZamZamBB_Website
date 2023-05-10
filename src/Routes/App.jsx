@@ -68,7 +68,7 @@ function App() {
 
           {
             flyerURLS.length > 0 ? flyerURLS.map((url, i) =>
-              !url.archive ? (<Flyer exp="123" logo={url.imgSrc}></Flyer>) : (<span/>)
+              !url.archive ? (<Flyer key={i}exp="123" logo={url.imgSrc}></Flyer>) : (<span/>)
             ) : <p className="green">Loading</p>
           }
         </div>

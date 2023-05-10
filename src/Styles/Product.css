@@ -10,13 +10,14 @@
 .product-card .card-description {
   font-size: 14px;
   margin-bottom: 0%;
+  text-align: center;
 }
 
 .product-card .card-price {
   font-size: 300%;
   color: yellow;
   position: absolute;
-  bottom: 10px;
+  bottom: 0px;
   left: 0;
   right: 0;
   margin: 0 auto;

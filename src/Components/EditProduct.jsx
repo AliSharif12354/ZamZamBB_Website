@@ -88,14 +88,12 @@ const EditProduct = props => {
                         <Card.Title className="text-center">
                             <h2 className="card-title">{props.name != null ? props.name : "Product name not found"}</h2>
                         </Card.Title>
-                        <Card.Text className="text-truncate text-center card-text">
                             <p className="card-description">
                                 {props.desc != null ?
-                                    (props.desc.length > 50 ? props.desc.slice(0, 50) + "..." : props.desc)
+                                    (props.desc.length > 50 ? props.desc.slice(0, 50) + "... click for more info" : props.desc)
                                     : "Product description not found"}
                             </p>
                             <p className="text-center card-price"><strong>{props.price != null ? "$" + props.price : "Price not found"}</strong></p>
-                        </Card.Text>
                         <Link to={`/editProduct/${props.pId}`}>
                             <Button variant='danger' className='delete-button' onClick={(e) => { e.stopPropagation(); handleEditProductClick() }}>Edit Product</Button>
                         </Link>
