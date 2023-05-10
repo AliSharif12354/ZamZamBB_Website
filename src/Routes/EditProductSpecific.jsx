@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom';
-import { Card, Modal, Button} from "react-bootstrap"
+import { Card, Modal, Button } from "react-bootstrap"
 import { db, auth, files } from '../Firebase';
 import { doc, getDoc, updateDoc, collection, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import Navbar_V2 from '../Components/Navbar_V2';
 import { Link } from 'react-router-dom';
 import Footer from '../Components/Footer'
+import '../Styles/EditProductSpecific.css'
 
 export default function EditProductSpecific() {
 
@@ -193,10 +194,10 @@ export default function EditProductSpecific() {
                 const updatedImages = [...images];
                 updatedImages.splice(index, 1);
                 setImages(updatedImages); //create new updated images array
-                const productsRef = collection(db, "products"); 
+                const productsRef = collection(db, "products");
                 const productRef = doc(productsRef, productID);
                 updateDoc(productRef, { //update doc in firebase
-                imageSrc: updatedImages,
+                    imageSrc: updatedImages,
                 })
                 console.log("File deleted successfully");
 
@@ -204,7 +205,7 @@ export default function EditProductSpecific() {
             .catch((error) => {
 
                 console.log("Error deleting file:", error);
-            
+
             });
 
     }
@@ -268,75 +269,68 @@ export default function EditProductSpecific() {
                                 </Card>
                             ))}
                         </div>
-                        <label className='formItem' htmlFor='image'>Image:</label>
-                        <input type='file' id='image' onChange={handleImageChange} multiple />
-                        <br />
-                        <br />
+                        <div className='formItem'>
+                            <label htmlFor='image'>Image:</label>
+                            <input type='file' id='image' onChange={handleImageChange} multiple />
+                        </div>
 
-                        <label className='formItem' htmlFor='name'>Name:</label>
-                        <input type='text' id='name' maxLength={30} value={name} onChange={(e) => setName(e.target.value)} required />
-                        <br />
-                        <br />
+                        <div className='formItem'>
+                            <label htmlFor='name'>Name:</label>
+                            <input type='text' id='name' maxLength={30} value={name} onChange={(e) => setName(e.target.value)} required />
+                        </div>
 
-                        <label className='formItem' htmlFor='description'>Description:</label>
-                        <textarea id='description' style={{ width: '300px', height: '100px' }} value={description} onChange={(e) => setDescription(e.target.value)} required />
-                        <br />
-                        <br />
+                        <div className='formItem'>
+                            <label htmlFor='description'>Description:</label>
+                            <textarea id='description' style={{ width: '300px', height: '100px' }} value={description} onChange={(e) => setDescription(e.target.value)} required />
+                        </div>
 
-                        <label className='formItem' htmlFor='price'>Price:</label>
-                        <input type='number' id='price' value={price} onChange={(e) => setPrice(e.target.value)} required />
-                        <br />
-                        <br />
+                        <div className='formItem'>
+                            <label htmlFor='price'>Price:</label>
+                            <input type='number' id='price' value={price} onChange={(e) => setPrice(e.target.value)} required />
+                        </div>
 
-                        <label className='formItem'><u>In Stock?:</u></label>
-                        <input type='radio' id='inStockTrue' name='inStock' value={true} onChange={(e) => setInStock(e.target.value)} required />
-                        {'   '}
-                        <label htmlFor='inStockTrue'>Yes</label>
-                        <br />
-                        {'   '}
-                        <input type='radio' id='inStockFalse' name='inStock' value={false} onChange={(e) => setInStock(e.target.value)} />
-                        {'   '}
-                        <label htmlFor='inStockFalse'> No </label>
-                        <br />
-                        <br />
+                        <div className='formItem'>
+                            <label><u>In Stock?:</u></label>
+                            <div className='radioButtons'>
+                                <input type='radio' id='inStockTrue' name='inStock' value={true} onChange={(e) => setInStock(e.target.value)} required />
+                                <label htmlFor='inStockTrue'>Yes</label>
+                                <input type='radio' id='inStockFalse' name='inStock' value={false} onChange={(e) => setInStock(e.target.value)} />
+                                <label htmlFor='inStockFalse'> No </label>
+                            </div>
+                        </div>
 
-                        <label className='formItem'>Is Product A&nbsp;<u>Luggage?</u> :</label>
-                        <input type='radio' id='isLuggageTrue' name='isLuggage' value={true} onChange={(e) => setIsLuggage(e.target.value)} required />
-                        {'   '}
-                        <label htmlFor='isLuggageTrue'>Yes</label>
-                        <br />
-                        {'   '}
-                        <input type='radio' id='isLuggageFalse' name='isLuggage' value={false} onChange={(e) => setIsLuggage(e.target.value)} />
-                        {'   '}
-                        <label htmlFor='isLuggageFalse'>No</label>
-                        <br />
-                        <br />
+                        <div className='formItem'>
+                            <label>Is Product A&nbsp;<u>Luggage?</u> :</label>
+                            <div className='radioButtons'>
+                                <input type='radio' id='isLuggageTrue' name='isLuggage' value={true} onChange={(e) => setIsLuggage(e.target.value)} required />
+                                <label htmlFor='isLuggageTrue'>Yes</label>
+                                <input type='radio' id='isLuggageFalse' name='isLuggage' value={false} onChange={(e) => setIsLuggage(e.target.value)} />
+                                <label htmlFor='isLuggageFalse'>No</label>
+                            </div>
+                        </div>
 
-                        <label className='formItem'>Is Product A&nbsp;<u>Clothing?:</u> </label>
-                        <input type='radio' id='isClothingTrue' name='isClothing' value={true} onChange={(e) => setIsClothing(e.target.value)} required />
-                        {'   '}
-                        <label htmlFor='isClothingTrue'>Yes</label>
-                        <br />
-                        {'   '}
-                        <input type='radio' id='isClothingFalse' name='isClothing' value={false} onChange={(e) => setIsClothing(e.target.value)} />
-                        {'   '}
-                        <label htmlFor='isClothingFalse'>No</label>
-                        <br />
-                        <br />
+                        <div className='formItem'>
+                            <label>Is Product A&nbsp;<u>Clothing?:</u> </label>
+                            <div className='radioButtons'>
+                                <input type='radio' id='isClothingTrue' name='isClothing' value={true} onChange={(e) => setIsClothing(e.target.value)} required />
+                                <label htmlFor='isClothingTrue'>Yes</label>
+                                <input type='radio' id='isClothingFalse' name='isClothing' value={false} onChange={(e) => setIsClothing(e.target.value)} />
+                                <label htmlFor='isClothingFalse'>No</label>
+                            </div>
+                        </div>
 
-                        <label className='formItem'>Is Product A&nbsp;<u>Best Seller?:</u></label>
-                        <input type='radio' id='isBestSellerTrue' name='isBestSeller' value={true} onChange={(e) => setIsBestSeller(e.target.value)} required />
-                        {'   '}
-                        <label htmlFor='isBestSellerTrue'>Yes</label>
-                        <br />
-                        {'   '}
-                        <input type='radio' id='isBestSellerFalse' name='isBestSeller' value={false} onChange={(e) => setIsBestSeller(e.target.value)} />
-                        {'   '}
-                        <label htmlFor='isBestSellerFalse'>No</label>
-                        <br />
-                        <br />
-                        <Button style={{marginRight: '5px'}} variant='success' type='submit'>Edit Product</Button>
-                        <Button className='delete' variant='danger' onClick={handleDelete}>DELETE PRODUCT</Button>
+                        <div className='formItem'>
+                            <label>Is Product A&nbsp;<u>Best Seller?:</u></label>
+                            <div className='radioButtons'>
+                                <input type='radio' id='isBestSellerTrue' name='isBestSeller' value={true} onChange={(e) => setIsBestSeller(e.target.value)} required />
+                                <label htmlFor='isBestSellerTrue'>Yes</label>
+                                <input type='radio' id='isBestSellerFalse' name='isBestSeller' value={false} onChange={(e) => setIsBestSeller(e.target.value)} />
+                                <label htmlFor='isBestSellerFalse'>No</label>
+
+                            </div>
+                            <Button style={{ marginRight: '5px' }} variant='success' type='submit'>Edit Product</Button>
+                            <Button className='delete' variant='danger' onClick={handleDelete}>DELETE PRODUCT</Button>
+                        </div>
                     </form >
                     <p ref={response} style={{ opacity: "0" }}>Changes made!</p>
                     <Modal show={showModal} onHide={handleCloseModal} centered className='addmodal'>

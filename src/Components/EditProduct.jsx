@@ -1,6 +1,7 @@
 import { Card, Modal, Button, Carousel } from "react-bootstrap"
 import React, { useState, useEffect } from 'react';
-import { auth } from "../Firebase";
+import { db, auth } from "../Firebase";
+import { doc, updateDoc, collection } from 'firebase/firestore';
 import '../Styles/EditProduct.css'
 import { Link } from 'react-router-dom';
 
@@ -42,6 +43,12 @@ const EditProduct = props => {
         }
 
         const handleNoInventoryClick = () => {
+            const productsRef = collection(db, "products");
+                const productRef = doc(productsRef, props.pId);
+                updateDoc(productRef, { //update doc in firebase
+                    inStock: false,
+                })
+                console.log("Set to no inventory successfully");
             console.log(props.pId);
         }
 
