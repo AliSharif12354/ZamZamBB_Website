@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom';
 import { Card, Modal, Button} from "react-bootstrap"
 import { db, auth, files } from '../Firebase';
@@ -25,6 +25,9 @@ export default function EditProductSpecific() {
     //const [showDeletePhotoModal, setShowDeletePhotoModal] = useState(false);
     //const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
+
+    let response = useRef(null)
+
     var out = <></>;
 
 
@@ -206,6 +209,24 @@ export default function EditProductSpecific() {
 
     }
 
+    async function handleDelete(e) {
+        e.preventDefault();
+        const docRef = doc(db, "products", productID);
+        try {
+            await deleteDoc(docRef);
+            response.current.style.opacity = '1';
+            response.innerHTML = "Flyer document successfully deleted!";
+        } catch (error) {
+            response.current.style.opacity = '1';
+            response.innerHTML = `Error deleting flyer document: $error`;
+            console.error("Error deleting flyer document: ", error);
+        }
+        //Update archive status
+
+
+        window.location.href = "/editProducts"
+    }
+
     function handleCloseModal() {
 
         setShowModal(false);
@@ -314,11 +335,10 @@ export default function EditProductSpecific() {
                         <label htmlFor='isBestSellerFalse'>No</label>
                         <br />
                         <br />
-                        <Button variant='success' type='submit'>Edit Product</Button>
-                        <br />
-                        <br />
+                        <Button style={{marginRight: '5px'}} className='success' type='submit'>Edit Product</Button>
+                        <Button className='delete' onClick={handleDelete}>DELETE PRODUCT</Button>
                     </form >
-                    <Button variant='danger' type='submit'>Delete Product</Button>
+                    <p ref={response} style={{ opacity: "0" }}>Changes made!</p>
                     <Modal show={showModal} onHide={handleCloseModal} centered className='addmodal'>
                         <Modal.Header closeButton>
                             <Modal.Title>Success</Modal.Title>
