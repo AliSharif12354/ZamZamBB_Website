@@ -139,6 +139,9 @@ export default function AddProduct() {
             <>
                 <Navbar_V2 />
                 <div className='formContainer'>
+                <h1><u>Add Product</u></h1>
+                <br />
+                <br />
                     <form onSubmit={handleSubmit}>
                         <label className='formItem' htmlFor='image'>Image:</label>
                         <input type='file' id='image' onChange={handleImageChange} required multiple />
@@ -172,7 +175,7 @@ export default function AddProduct() {
                         <br />
                         <br />
 
-                        <label className='formItem'>Is Product A&nbsp;<u>Luggage?</u> :</label>
+                        <label className='formItem'>Is Product A&nbsp;<u>Luggage?:</u></label>
                         <input type='radio' id='isLuggageTrue' name='isLuggage' value={true} onChange={(e) => setIsLuggage(e.target.value)} required />
                         {'   '}
                         <label htmlFor='isLuggageTrue'>Yes</label>

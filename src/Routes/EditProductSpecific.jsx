@@ -251,6 +251,9 @@ export default function EditProductSpecific() {
             <>
                 <Navbar_V2 />
                 <div className='formContainer'>
+                <h1><u>Edit Product</u></h1>
+                <br />
+                <br />
                     <form onSubmit={handleSubmit}>
                         <div className="d-flex flex-wrap justify-content-center align-items-center flex-wrap" style={{ paddingLeft: "22px" }}>
                             {images.map((imageUrl, index) => (
@@ -300,7 +303,7 @@ export default function EditProductSpecific() {
                         </div>
 
                         <div className='formItem'>
-                            <label>Is Product A&nbsp;<u>Luggage?</u> :</label>
+                            <label>Is Product A&nbsp;<u>Luggage?:</u></label>
                             <div className='radioButtons'>
                                 <input type='radio' id='isLuggageTrue' name='isLuggage' value={true} onChange={(e) => setIsLuggage(e.target.value)} required />
                                 <label htmlFor='isLuggageTrue'>Yes</label>
