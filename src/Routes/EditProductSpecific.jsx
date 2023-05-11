@@ -12,6 +12,7 @@ import '../Styles/EditProductSpecific.css'
 export default function EditProductSpecific() {
 
     const { productID } = useParams(); //get product id from params
+    console.log("Test", productID)
     const [product, setProduct] = useState(null);
     const [images, setImages] = useState([]);
     const [newImages, setNewImages] = useState([]);
