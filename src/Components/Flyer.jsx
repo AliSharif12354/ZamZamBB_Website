@@ -20,7 +20,7 @@ function Flyer(props) {
       />
       {/* {console.log("URL OF THIS FLYER: ", props.logo)} */}
 
-      <Modal show={showModal} onHide={handleCloseModal}>
+      <Modal show={showModal} onHide={handleCloseModal} onClick={handleCloseModal}>
         <Modal.Body className="text-center p-0">
           <img
             src={props.logo != null ? props.logo : "image not found"}
