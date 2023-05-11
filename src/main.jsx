@@ -10,29 +10,25 @@ import AddProductRoute from './Routes/AddProductRoute'
 import AddFlyerRoute from './Routes/AddFlyerRoute'
 import FlyerDetails from './Routes/FlyerDetails'
 import EditProductSpecific from './Routes/EditProductSpecific'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-
-// import Featured from './Routes/Featured'
-// import AboutUs from './Routes/AbousUs'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-
-const router = createBrowserRouter([
-  {path: "/", element: <App/>},
-  {path: "/signinadmin", element: <SignIn/>},
-  {path: "/products", element: <Products/>},
-  {path: "/adminRoute", element: <AdminRoute/>},
-  {path: "/editFlyers", element: <EditFlyerRoute/>},
-  {path: "/editProducts", element: <EditProductsRoute/>},
-  {path: "/addProduct", element: <AddProductRoute/>},
-  {path: "/flyerDetails/:flyerID", element: <FlyerDetails/>},
-  {path: "/editProduct/:productID", element: <EditProductSpecific/>},
-  {path: "/addFlyer", element: <AddFlyerRoute/>}
-  // {path: "/Featured", element: <Featured/>},
-  // {path: "/AboutUs", element: <AboutUs/>}
-]);
+const router = (
+  <Routes>
+    <Route path="/" element={<App />} />
+    <Route path="/signinadmin" element={<SignIn />} />
+    <Route path="/products" element={<Products />} />
+    <Route path="/adminRoute" element={<AdminRoute />} />
+    <Route path="/editFlyers" element={<EditFlyerRoute />} />
+    <Route path="/editProducts" element={<EditProductsRoute />} />
+    <Route path="/addProduct" element={<AddProductRoute />} />
+    <Route path="/flyerDetails/:flyerID" element={<FlyerDetails />} />
+    <Route path="/editProduct/:productID" element={<EditProductSpecific />} />
+    <Route path="/addFlyer" element={<AddFlyerRoute />} />
+  </Routes>
+);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <RouterProvider router={router}/>
-  </React.StrictMode>
-)
+  <BrowserRouter>
+    {router}
+  </BrowserRouter>
+);
