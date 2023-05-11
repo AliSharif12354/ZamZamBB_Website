@@ -344,7 +344,7 @@ export default function EditProductSpecific() {
                     </form >
                     <p ref={response} style={{ opacity: "0" }}>Changes made!</p>
                     <Modal show={showModal} onHide={handleCloseModal} backdrop="static" centered className='addmodal'>
-                        <Modal.Header closeButton>
+                        <Modal.Header >
                             <Modal.Title>Success</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
@@ -360,7 +360,7 @@ export default function EditProductSpecific() {
                     </Modal>
                     {/* delete modal */}
                     <Modal show={showDeleteModal} onHide={handleCloseDeleteModal} backdrop="static" centered className='deletemodal'>
-                        <Modal.Header closeButton>
+                        <Modal.Header >
                             <Modal.Title>Deleted</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
