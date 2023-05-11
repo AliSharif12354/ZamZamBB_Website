@@ -21,7 +21,7 @@ const Products = () => {
             const querySnapshot = await getDocs(collection(db, 'products'));
             setProducts(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         };
-        
+
         fetchProducts();
 
         const unsubscribe = auth.onAuthStateChanged(user => { //checking auth state always from firebase
@@ -40,9 +40,9 @@ const Products = () => {
             <Navbar_V2 />
             <br />
             <Container className="my-5">
-                <Row className="gy-4 justify-content-center">
+                <Row className={`gy-4 justify-content-center ${styles.productRow}`}>
                     {products.map((product) => (
-                        <Col lg={3} key={product.id}>
+                        <Col lg={3} md={6} sm={12} className="small-col" key={product.id}>
                             <Product
                                 key={product.id}
                                 pId={product.id}
@@ -50,7 +50,7 @@ const Products = () => {
                                 name={product.name != null ? product.name : "Product name not found"}
                                 desc={product.description != null ? product.description : "description not found"}
                                 price={product.price != null ? product.price : "Price not found"}
-                                
+
                             />
                         </Col>
                     ))}
