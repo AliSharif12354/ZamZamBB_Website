@@ -26,4 +26,13 @@
     text-align: center;
 
   }
+
+  .deletemodal .modal-content{
+
+    background-color: red;
+    color: black;
+    text-align: center;
+
+
+  }
   

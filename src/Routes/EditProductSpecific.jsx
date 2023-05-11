@@ -24,6 +24,7 @@ export default function EditProductSpecific() {
     const [isClothing, setIsClothing] = useState(false);
     const [isBestSeller, setIsBestSeller] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     //const [showDeletePhotoModal, setShowDeletePhotoModal] = useState(false);
     //const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
@@ -224,14 +225,19 @@ export default function EditProductSpecific() {
             console.error("Error deleting flyer document: ", error);
         }
         //Update archive status
+        setShowDeleteModal(true)
 
-
-        window.location.href = "/editProducts"
     }
 
     function handleCloseModal() {
 
         setShowModal(false);
+
+    }
+
+    function handleCloseDeleteModal() {
+
+        setShowDeleteModal(false);
 
     }
 
@@ -347,6 +353,22 @@ export default function EditProductSpecific() {
                         <Modal.Footer>
                             <Link to='/editProducts'>
                                 <Button variant="secondary" onClick={handleCloseModal}>
+                                    Close
+                                </Button>
+                            </Link>
+                        </Modal.Footer>
+                    </Modal>
+                    {/* delete modal */}
+                    <Modal show={showDeleteModal} onHide={handleCloseDeleteModal} centered className='deletemodal'>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Deleted</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <p>The product has been deleted successfully!</p>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Link to='/editProducts'>
+                                <Button variant="secondary" onClick={handleCloseDeleteModal}>
                                     Close
                                 </Button>
                             </Link>
