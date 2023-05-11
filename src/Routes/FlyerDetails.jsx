@@ -12,7 +12,7 @@ import "../Styles/FlyerDetails.css"
 export default function FlyerDetails(props) {
 
     const { flyerID } = useParams(); //Get flyer ID from URL
-    console.log(flyerID)
+    console.log("HELLO",flyerID)
     const [flyerData, setFlyerData] = useState(null);
     const response = useRef(null) //Get the success message pointer, purely for outputting to user not for functionality
 
