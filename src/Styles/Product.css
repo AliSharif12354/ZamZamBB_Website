@@ -72,6 +72,10 @@
     width: 50%;
   }
 
+  .carousel-indicators {
+    font-size: 0.5rem; /* adjust the font size to your desired value */
+  }
+
 }
 
 
