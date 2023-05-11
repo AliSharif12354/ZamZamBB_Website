@@ -212,7 +212,7 @@ export default function AddProduct() {
                         <br />
                         <Button className='success' type='submit'>Add Product</Button>
                     </form>
-                    <Modal show={showModal} onHide={handleCloseModal} centered className='addmodal'>
+                    <Modal show={showModal} onHide={handleCloseModal} backdrop="static" centered className='addmodal'>
                         <Modal.Header closeButton>
                             <Modal.Title>Success</Modal.Title>
                         </Modal.Header>
