@@ -63,6 +63,7 @@ export default function AddProduct() {
                 isLuggage: isLuggage,
                 isClothing: isClothing,
                 isBestSeller: isBestSeller,
+                createdAt: timestamp,
             })
                 .then(() => {
                     // Reset fields if function succeeded
