@@ -25,7 +25,8 @@
 }
 
 .editproduct-card .card-price {
-  font-size: 16px;
+  font-size: 300%;
+  color: yellow;
 }
 
 .editproduct-card .card-img {
