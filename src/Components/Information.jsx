@@ -72,9 +72,6 @@ function Information(props) {
                             <h3 style={{ color: "white", marginBottom: "10px" }}>Call: 416-817-6849</h3>
                             <p style={{ color: "white", marginBottom: "10px" }}>EMAIL:</p>
                             <h3 style={{ color: "white", marginBottom: "10px" }}> - zamzam630@hotmail.com - <br /></h3> 
-                            <p style={{ color: "white", marginBottom: "10px" }}>Travel Needs</p>
-                            <h3 style={{ color: "white", marginBottom: "10px" }}> - zamzam630@hotmail.ca - <br /></h3>
-                            <p style={{ color: "white", marginBottom: "10px" }}>Clothing Needs</p>
                         </Card.Body>
                     </Card>
                 </MDBCol>
