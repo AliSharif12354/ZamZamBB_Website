@@ -1,9 +1,9 @@
 import { Button } from "react-bootstrap"
-import { db } from '../Firebase';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { auth } from "../Firebase";
+import { ref, deleteObject } from 'firebase/storage';
+import { auth, files, db } from "../Firebase";
 import Flyer from '../Components/Flyer';
 import Navbar_V2 from '../Components/Navbar_V2';
 import Footer from '../Components/Footer'
@@ -14,22 +14,9 @@ export default function FlyerDetails(props) {
     const { flyerID } = useParams(); //Get flyer ID from URL
     const [flyerData, setFlyerData] = useState(null);
     const response = useRef(null) //Get the success message pointer, purely for outputting to user not for functionality
-
     const [currentUser, setCurrentUser] = useState(null); //use state currentUser to hold auth user
     let out = <></>;
 
-    // useEffect(() => { //Get flyer document from firestore
-    //     const fetchFlyerDetails = async () => {
-    //         const docRef = doc(db, "flyers", flyerID);
-    //         const docSnap = await getDoc(docRef);
-    //         if (docSnap.exists()) {
-    //             setFlyerData(docSnap.data());
-    //         } else {
-    //             console.log("No such document exists!");
-    //         }
-    //     };
-    //     fetchFlyerDetails();
-    // }, [db, flyerID]);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => { //checking auth state always from firebase
@@ -62,6 +49,11 @@ export default function FlyerDetails(props) {
 
         if (deleteValue === "yes") { //Delete flyer document
             try {
+                const docSnapshot = await getDoc(docRef);
+                const flyerData = docSnapshot.data();
+                const imageSrc = flyerData.imgSrc;
+                const imageRef = ref(files, imageSrc);
+                await deleteObject(imageRef);
                 await deleteDoc(docRef);
                 response.current.style.opacity = '1';
                 response.innerHTML = "Flyer document successfully deleted!";

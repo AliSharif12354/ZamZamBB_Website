@@ -14,6 +14,8 @@ export default function EditProductsRoute() {
 
     const [products, setProducts] = useState([]); //get products from database
     const [currentUser, setCurrentUser] = useState(null); //use state currentUser to hold auth user
+    const [displayedProducts, setDisplayedProducts] = useState([]);
+
 
     var out = <></>;
 
@@ -38,6 +40,32 @@ export default function EditProductsRoute() {
 
     }, [currentUser]); //putting currentUser in dependancy array to make sure were always checking its value
 
+    useEffect(() => {
+        setDisplayedProducts(products);
+        //console.log(products);
+        //console.log(stockProducts);
+    }, [products]);
+
+    const handleAllProductsClick = () => {
+        setDisplayedProducts(products);
+        //console.log(products);
+        //console.log(stockProducts);
+    };
+
+    const handleLuggageClick = () => {
+        const luggageProducts = products.filter((product) => product.isLuggage === "true");
+        setDisplayedProducts(luggageProducts);
+        //console.log(products);
+        //console.log(luggageProducts);
+    };
+
+    const handleClothingClick = () => {
+        const clothingProducts = products.filter((product) => product.isClothing === "true");
+        setDisplayedProducts(clothingProducts);
+        //console.log(products);
+        //console.log(clothingProducts);
+    };
+
     if (!currentUser) {
 
         out = <>Route Not Found</>; //if not auth output variable will display thig
@@ -45,6 +73,9 @@ export default function EditProductsRoute() {
     }
 
     if (currentUser) { //if auth generate content
+
+
+
         out =
             <>
                 <Navbar_V2 />
@@ -56,9 +87,22 @@ export default function EditProductsRoute() {
                         </Button>
                     </Link>
                 </div>
+                <br />
+                <div className="text-center">
+                    <h2>Search By:</h2>
+                    <Button className="rounded-pill mx-2" onClick={handleAllProductsClick}>
+                        All Products
+                    </Button>
+                    <Button className="rounded-pill mx-2" onClick={handleLuggageClick}>
+                        Luggage
+                    </Button>
+                    <Button className="rounded-pill mx-2" onClick={handleClothingClick}>
+                        Clothing
+                    </Button>
+                </div>
                 <Container className="my-5">
                     <Row className="gy-4 justify-content-center">
-                        {products.map((product) => (
+                        {displayedProducts.map((product) => (
                             <Col lg={3} key={product.id}>
                                 {/* {console.log(product.id)} */}
                                 <EditProduct

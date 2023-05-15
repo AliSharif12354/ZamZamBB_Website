@@ -25,6 +25,7 @@ const files = getStorage(app)
 const db = getFirestore(app)
 
 const Flyers = ref(files, "Images/Flyers/");
+const Items = ref(files, "Images/Items/");
 const Other = ref(files, "Images/Other/");
 
 
@@ -72,4 +73,4 @@ function updateOther() { //other images, misc. images,
   });
 }
 
-export { auth, app, files, db, updateFlyers, updateOther};
+export { auth, app, files, db, Items, updateFlyers, updateOther};

@@ -216,13 +216,26 @@ export default function EditProductSpecific() {
         e.preventDefault();
         const docRef = doc(db, "products", productID);
         try {
+            // Get the document data
+            const docSnapshot = await getDoc(docRef);
+            const productData = docSnapshot.data();
+            const imageSrc = productData.imageSrc;
+
+            // Delete each image from storage * missing from before
+            for (const imageUrl of imageSrc) {
+                const imageRef = ref(files, imageUrl);
+                await deleteObject(imageRef);
+            }
+
+            // Delete the document
             await deleteDoc(docRef);
             response.current.style.opacity = '1';
-            response.innerHTML = "Flyer document successfully deleted!";
+            response.innerHTML = "product document successfully deleted!";
+
         } catch (error) {
             response.current.style.opacity = '1';
-            response.innerHTML = `Error deleting flyer document: $error`;
-            console.error("Error deleting flyer document: ", error);
+            response.innerHTML = `Error deleting product document: $error`;
+            console.error("Error deleting product document: ", error);
         }
         //Update archive status
         setShowDeleteModal(true)
@@ -258,13 +271,13 @@ export default function EditProductSpecific() {
             <>
                 <Navbar_V2 />
                 <div className='formContainer'>
-                <h1><u>Edit Product</u></h1>
-                <br />
-                <br />
+                    <h1><u>Edit Product</u></h1>
+                    <br />
+                    <br />
                     <form onSubmit={handleSubmit}>
                         <div className="d-flex flex-wrap justify-content-center align-items-center flex-wrap" style={{ paddingLeft: "22px" }}>
                             {images.map((imageUrl, index) => (
-                                <Card key={index} bg="dark" className="col-lg-3 mb-4 me-4" style={{ maxWidth: '50%', minWidth:"300px" }}>
+                                <Card key={index} bg="dark" className="col-lg-3 mb-4 me-4" style={{ maxWidth: '50%', minWidth: "300px" }}>
                                     <Card.Img variant="top" src={imageUrl} />
                                     <Card.Body>
                                         <Button variant="secondary" onClick={() => moveUp(index)}>Move Up</Button>
