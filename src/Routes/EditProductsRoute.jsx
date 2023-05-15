@@ -7,6 +7,7 @@ import EditProduct from '../Components/EditProduct';
 import Navbar_V2 from '../Components/Navbar_V2';
 import Footer from '../Components/Footer'
 import '../Styles/EditProduct.css'
+import styles from "../Styles/Products.module.css";
 
 
 
@@ -101,9 +102,9 @@ export default function EditProductsRoute() {
                     </Button>
                 </div>
                 <Container className="my-5">
-                    <Row className="gy-4 justify-content-center">
+                    <Row className={`gy-4 justify-content-center ${styles.productRow}`}>
                         {displayedProducts.map((product) => (
-                            <Col lg={3} key={product.id}>
+                           <Col lg={3} md={6} sm={12} className="small-col" key={product.id}>
                                 {/* {console.log(product.id)} */}
                                 <EditProduct
                                     pId={product.id}
