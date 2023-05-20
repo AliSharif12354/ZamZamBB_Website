@@ -43,7 +43,6 @@ export default function FlyerDetails(props) {
 
     async function handleFormSubmit(e) { //Functionality for submitting changes
         e.preventDefault();
-        console.log("we here")
         const deleteValue = e.target.delete.value;
         const archiveValue = e.target.archive.value;
         const docRef = doc(db, "flyers", flyerID);

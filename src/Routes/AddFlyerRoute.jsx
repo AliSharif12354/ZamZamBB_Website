@@ -23,12 +23,6 @@ export default function AddFlyerRoute() {
         const flyersStorageRef = ref(files, "Images/Flyers"); // getStorage get Path
         const timestamp = new Date().getTime(); //timestamp to create unique name for image file each time
 
-        // console.log('images array passed in function is below')
-        // console.log(images); //debug
-        // console.log('images array passed in function is below')
-
-        // Upload images to Firebase Storage
-
         const imageName = `Flyer_${timestamp}`; //index to create a new name for each photo being uploaded
 
         const imageRef = ref(flyersStorageRef, imageName); //get image storage and create name for product
@@ -37,13 +31,10 @@ export default function AddFlyerRoute() {
             return getDownloadURL(snapshot.ref); //return downloadurl array to be used in promise function 
         });
 
-        console.log(uploadPromises)
-
         uploadPromises.then((downloadURLs) => { //uploadPromises is array holding all download urls
 
-            console.log("URLS IN PROMISE", downloadURLs);
-
             // Add product document to Firestore with image URLs
+            console.log("ARCHIVE STATUS: ", archive)
             
             setDoc(doc(flyersRef), {
                 imgSrc: downloadURLs,
@@ -53,7 +44,7 @@ export default function AddFlyerRoute() {
                     // Reset fields if function succeeded
                     setArchive('');
                     setImage(null)
-                    console.log("Product added successfully");
+                    console.log("Flyer added successfully");
                 })
                 .catch((error) => {
                     console.error("Error adding product: ", error);
