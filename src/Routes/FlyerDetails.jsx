@@ -43,6 +43,7 @@ export default function FlyerDetails(props) {
 
     async function handleFormSubmit(e) { //Functionality for submitting changes
         e.preventDefault();
+        console.log("we here")
         const deleteValue = e.target.delete.value;
         const archiveValue = e.target.archive.value;
         const docRef = doc(db, "flyers", flyerID);
@@ -77,7 +78,7 @@ export default function FlyerDetails(props) {
                 console.error("Error deleting flyer document: ", error);
             }
         }
-        location.reload()
+        location.href = '/#/editFlyers'
     }
 
     if (!currentUser) {
@@ -117,6 +118,7 @@ export default function FlyerDetails(props) {
                             </label>
                         </div>
                         <br />
+
                         <Button type="submit">Submit</Button>
                         <p ref={response} style={{ opacity: "0" }}>Changes made!</p>
                     </form>

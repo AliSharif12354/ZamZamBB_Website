@@ -60,7 +60,7 @@ export default function EditFlyerRoute() {
           <Row className="gy-4 justify-content-center">
             {flyers.length > 0 ? flyers.map((flyer) => (
               <Col lg={3} key={flyer.id}>
-
+                {flyer.archive ? <p style={{textAlign: 'center'}}>Archived</p> : <s></s>}
                 <EditFlyer fId={flyer.id} logo={flyer.imgSrc}/>
 
               </Col>
