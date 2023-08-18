@@ -8,7 +8,7 @@ import { SocialIcon } from 'react-social-icons';
 
 export default function App() {
   return (
-    <MDBFooter className='text-center hover' color='white' bgColor='dark'>
+    <MDBFooter style={{marginTop: '30px'}} className='text-center hover' color='white' bgColor='dark'>
       <MDBContainer className='p-4'>
         <section className='mb-4'>
           <SocialIcon url="https://www.facebook.com/ZamZam176/" target="_blank"/>

@@ -81,6 +81,9 @@ function Navbar_V2() {
                 <Link to='/adminRoute' className='nav-links' onClick={closeMobileMenu}>
                   Admin
                 </Link>
+                <Link to='/adminEmail' className='nav-links' onClick={closeMobileMenu}>
+                  Email
+                </Link>
               </li>
             ) : (
               ""

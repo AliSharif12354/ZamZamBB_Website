@@ -88,7 +88,7 @@ function Information(props) {
                     alt="Image not found"
                 />
             </MDBCol>
-            <br /><br /><br />
+            <br />
         </MDBContainer>
     );
 }

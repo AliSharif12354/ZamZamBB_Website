@@ -10,6 +10,7 @@ import AddProductRoute from './Routes/AddProductRoute';
 import AddFlyerRoute from './Routes/AddFlyerRoute';
 import FlyerDetails from './Routes/FlyerDetails';
 import EditProductSpecific from './Routes/EditProductSpecific';
+import AdminEmailRoute from './Routes/AdminEmailRoute';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
 const router = (
@@ -25,6 +26,7 @@ const router = (
       <Route path="/flyerDetails/:flyerID" element={<FlyerDetails />} />
       <Route path="/editProduct/:productID" element={<EditProductSpecific />} />
       <Route path="/addFlyer" element={<AddFlyerRoute />} />
+      <Route path="/adminEmail" element={<AdminEmailRoute />} />
     </Routes>
   </HashRouter>
 );
