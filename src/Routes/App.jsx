@@ -75,8 +75,8 @@ function App() {
         </div>
 
       </div>
-      <Information logo={otherURLS.at(0)} />
       <NewsLetterSignup />
+      <Information logo={otherURLS.at(0)} />
       <Footer />
     </>
   );
