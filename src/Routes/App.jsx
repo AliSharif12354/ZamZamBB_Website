@@ -3,6 +3,7 @@ import Navbar_V2 from '../Components/Navbar_V2.jsx'
 import Flyer from '../Components/Flyer.jsx'
 import Footer from '../Components/Footer.jsx'
 import Information from '../Components/Information'
+import NewsLetterSignup from '../Components/NewsLetterSignup'
 // import Product from '../Components/Product'
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -75,6 +76,7 @@ function App() {
 
       </div>
       <Information logo={otherURLS.at(0)} />
+      <NewsLetterSignup />
       <Footer />
     </>
   );
