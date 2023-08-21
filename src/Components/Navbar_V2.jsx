@@ -77,14 +77,18 @@ function Navbar_V2() {
           )}
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             {auth.currentUser ? (
-              <li id='0' className='nav-item'>
-                <Link to='/adminRoute' className='nav-links' onClick={closeMobileMenu}>
-                  Admin
-                </Link>
-                <Link to='/adminEmail' className='nav-links' onClick={closeMobileMenu}>
-                  Email
-                </Link>
-              </li>
+              <>
+                <li id='0' className='nav-item'>
+                  <Link to='/adminRoute' className='nav-links' onClick={closeMobileMenu}>
+                    Admin
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/adminEmail' className='nav-links' onClick={closeMobileMenu}>
+                    Email
+                  </Link>
+                </li>
+              </>
             ) : (
               ""
             )}
