@@ -14,11 +14,10 @@ function Flyer(props) {
       <img
         className="img-fluid hover-shadow"
         onClick={handleShowModal}
-        style={{ cursor: "pointer", padding: 0, maxHeight: '700px', maxWidth: '500px' }}
+        style={{ cursor: "pointer", padding: 0, maxHeight: '700px', maxWidth: '100%', marginBottom:'5px' }}
         src={props.logo}
         alt="Image not found"
       />
-      {/* {console.log("URL OF THIS FLYER: ", props.logo)} */}
 
       <Modal show={showModal} onHide={handleCloseModal} onClick={handleCloseModal}>
         <Modal.Body className="text-center p-0">
@@ -37,4 +36,3 @@ function Flyer(props) {
 }
 
 export default Flyer;
-

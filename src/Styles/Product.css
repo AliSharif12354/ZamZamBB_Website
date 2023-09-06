@@ -7,8 +7,14 @@
   overflow: hidden;
 }
 
+.product-card .card-title {
+  color: yellow;
+  width: 100%; /* Make the title match the width of the card */
+  font-size: xx-large;
+}
+
 .product-card .card-description {
-  font-size: 14px;
+  font-size: 100%;
   margin-bottom: 0%;
   text-align: center;
 }
@@ -75,6 +81,22 @@
   .carousel-indicators {
     font-size: 0.25rem; /* adjust the font size to your desired value */
   }
+
+  .product-card .card-price {
+    font-size:270%;
+    color: yellow;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  .product-card .card-title {
+    font-size: 22.5px;
+    color: yellow;
+  }
+  
 
 }
 
