@@ -9,7 +9,6 @@
 
 .product-card .card-title {
   color: yellow;
-  width: 100%; /* Make the title match the width of the card */
   font-size: xx-large;
 }
 
