@@ -9,8 +9,8 @@ import { Row, Col, Container, Button } from 'react-bootstrap';
 
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [displayedProducts, setDisplayedProducts] = useState([]);
+  const [products, setProducts] = useState([]); //getting all products from the database once then using this to populate the other arrays and info
+  const [displayedProducts, setDisplayedProducts] = useState([]); 
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
@@ -34,29 +34,29 @@ const Products = () => {
   useEffect(() => {
     const stockProducts = products.filter((product) => product.inStock === "true");
     setDisplayedProducts(stockProducts);
-    console.log(products);
-    console.log(stockProducts);
+    //console.log(products);
+    //console.log(stockProducts);
   }, [products]);
 
   const handleAllProductsClick = () => {
     const stockProducts = products.filter((product) => product.inStock === "true");
     setDisplayedProducts(stockProducts);
-    console.log(products);
-    console.log(stockProducts);
+    //console.log(products);
+    //console.log(stockProducts);
   };
 
   const handleLuggageClick = () => {
     const luggageProducts = products.filter((product) => product.isLuggage === "true" && product.inStock === "true");
     setDisplayedProducts(luggageProducts);
-    console.log(products);
-    console.log(luggageProducts);
+    //console.log(products);
+    //console.log(luggageProducts);
   };
 
   const handleClothingClick = () => {
     const clothingProducts = products.filter((product) => product.isClothing === "true" && product.inStock === "true");
     setDisplayedProducts(clothingProducts);
-    console.log(products);
-    console.log(clothingProducts);
+    //console.log(products);
+    //console.log(clothingProducts);
   };
 
   return (

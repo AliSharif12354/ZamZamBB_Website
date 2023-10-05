@@ -44,11 +44,11 @@ const EditProduct = props => {
 
         const handleNoInventoryClick = () => {
             const productsRef = collection(db, "products");
-                const productRef = doc(productsRef, props.pId);
-                updateDoc(productRef, { //update doc in firebase
-                    inStock: false,
-                })
-                console.log("Set to no inventory successfully");
+            const productRef = doc(productsRef, props.pId);
+            updateDoc(productRef, { //update doc in firebase
+                inStock: false,
+            })
+            console.log("Set to no inventory successfully");
             console.log(props.pId);
         }
 
@@ -61,6 +61,7 @@ const EditProduct = props => {
                                 className="d-block w-100"
                                 src={image}
                                 alt={props.name}
+                                style={{ height: '400px', objectFit: 'cover' }}
                             />
                         </Carousel.Item>
                     )
@@ -88,12 +89,12 @@ const EditProduct = props => {
                         <Card.Title className="text-center">
                             <h2 className="card-title">{props.name != null ? props.name : "Product name not found"}</h2>
                         </Card.Title>
-                            <p className="card-description">
-                                {props.desc != null ?
-                                    (props.desc.length > 50 ? props.desc.slice(0, 50) + "... click for more info" : props.desc)
-                                    : "Product description not found"}
-                            </p>
-                            <p className="text-center card-price"><strong>{props.price != null ? "$" + props.price : "Price not found"}</strong></p>
+                        <p className="card-description">
+                            {props.desc != null ?
+                                (props.desc.length > 50 ? props.desc.slice(0, 50) + "... click for more info" : props.desc)
+                                : "Product description not found"}
+                        </p>
+                        <p className="text-center card-price"><strong>{props.price != null ? "$" + props.price : "Price not found"}</strong></p>
                         <Link to={`/editProduct/${props.pId}`}>
                             <Button variant='danger' className='delete-button' onClick={(e) => { e.stopPropagation(); handleEditProductClick() }}>Edit Product</Button>
                         </Link>
