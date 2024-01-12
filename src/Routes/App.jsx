@@ -30,7 +30,7 @@ function App() {
         console.log(error);
       }
     }
-    async function fetchFlyers () {
+    async function fetchFlyers() {
       const querySnapshot = await getDocs(collection(db, 'flyers'));
       setFlyerURLs(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       console.log("cmon", flyerURLS)
@@ -61,22 +61,21 @@ function App() {
       <Navbar_V2 />
 
       <div className='Flyers'>
-
-        <h2>Our Current Flyers</h2>
-        <h3>First come first serve, don't miss your chance!</h3>
+        <h1>Zam Zam - A Toronto Secret </h1>
+        <h2>First come first serve, don't miss your chance!</h2>
         <br />
         <div>
 
           {
             flyerURLS.length > 0 ? flyerURLS.map((url, i) =>
-              !url.archive ? (<Flyer key={i}exp="123" logo={url.imgSrc}></Flyer>) : (<span/>)
+              !url.archive ? (<Flyer key={i} exp="123" logo={url.imgSrc}></Flyer>) : (<span />)
             ) : <p className="green">Loading</p>
           }
         </div>
 
       </div>
       <NewsLetterSignup />
-      <Information logo={otherURLS.at(0)} />
+      <Information logo="/Images/Interior-Zam-Zam.jpg" />
       <Footer />
     </>
   );

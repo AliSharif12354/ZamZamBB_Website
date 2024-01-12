@@ -43,38 +43,43 @@ const NewsLetterSignup = () => {
 
     return (
         <div className='container-news'>
-            <div className="newsletter-section">
-                <h2>Promos and Offers! Join our Newsletter</h2>
-                <p>Get real-time news of promotional offers. Up to 70% off at select times!</p>
-                {showSuccessMessage && (
-                    <Alert variant="success">Thank you for subscribing to our newsletter!</Alert>
-                )}
-                {showErrorMessage && (
-                    <Alert variant="danger">Please enter a valid name and email address.</Alert>
-                )}
-                <Form className='input-form' onSubmit={handleSubmit}>
-                    <Form.Group className='input-form' controlId="formName">
-                        <Form.Label style={{color: '#FFFFCC'}}>Your name</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter your name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group className='input-form' controlId="formEmail">
-                        <Form.Label style={{color: '#FFFFCC'}}>Your email</Form.Label>
-                        <Form.Control
-                            type="email"
-                            placeholder="Enter your email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Sign up
-                    </Button>
-                </Form>
+            <div className='group-content'>
+                <div className="newsletter-section">
+                    <h2>Promos and Offers! Join our Newsletter</h2>
+                    <p>Get real-time news of promotional offers. Up to 70% off at select times!</p>
+                    {showSuccessMessage && (
+                        <Alert variant="success">Thank you for subscribing to our newsletter!</Alert>
+                    )}
+                    {showErrorMessage && (
+                        <Alert variant="danger">Please enter a valid name and email address.</Alert>
+                    )}
+                    <Form className='input-form' onSubmit={handleSubmit}>
+                        <Form.Group className='input-form' controlId="formName">
+                            <Form.Label style={{ color: '#FFFFCC' }}>Your name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter your name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group className='input-form' controlId="formEmail">
+                            <Form.Label style={{ color: '#FFFFCC' }}>Your email</Form.Label>
+                            <Form.Control
+                                type="email"
+                                placeholder="Enter your email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Button variant="primary" type="submit">
+                            Sign up
+                        </Button>
+                    </Form>
+                </div>
+                <div className='Logo'>
+                    <img src="/Images/ZamZam-Logo-6.jpg" />
+                </div>
             </div>
         </div>
     );
